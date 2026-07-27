@@ -17,7 +17,7 @@
       --gradient: linear-gradient(135deg, #a855f7, #6366f1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
     
     /* Background with Grid Pattern & Mesh Glow */
     body { 
@@ -42,14 +42,9 @@
       50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.45); }
     }
 
-    @keyframes floatAnimation {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-    }
-
     /* Header Nav Bar */
     header {
-      padding: 18px 20px;
+      padding: 15px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -58,17 +53,17 @@
     }
 
     .header-pill {
-      max-width: 1000px;
+      max-width: 1200px;
       margin: 0 auto;
-      background: rgba(20, 16, 40, 0.7);
+      background: rgba(20, 16, 40, 0.85);
       border: 1px solid var(--border);
-      padding: 10px 22px;
+      padding: 10px 24px;
       border-radius: 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      animation: floatAnimation 4s ease-in-out infinite;
+      gap: 15px;
     }
 
     .brand-logo { 
@@ -78,6 +73,7 @@
       align-items: center; 
       gap: 10px; 
       letter-spacing: -0.5px;
+      white-space: nowrap;
     }
 
     .brand-logo span { 
@@ -93,18 +89,61 @@
       box-shadow: 0 0 15px var(--accent-glow);
     }
 
+    /* Navigation Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #a855f7;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-phone {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e2e8f0;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-phone:hover {
+      color: #a855f7;
+    }
+
+    .nav-phone i {
+      color: #a855f7;
+    }
+
     .hire-btn {
       background: var(--gradient);
       color: white;
-      padding: 10px 20px;
+      padding: 9px 20px;
       border-radius: 25px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       gap: 8px;
-      position: relative;
-      overflow: hidden;
+      white-space: nowrap;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 20px var(--accent-glow);
     }
@@ -229,7 +268,7 @@
     }
 
     /* Section Header */
-    .section-title { text-align: center; margin: 70px 0 35px; }
+    .section-title { text-align: center; margin: 70px 0 35px; scroll-margin-top: 100px; }
     .section-title h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
     .section-title p { color: #94a3b8; font-size: 1rem; margin-top: 6px; }
 
@@ -422,20 +461,59 @@
 
     .order-btn:hover { background: var(--gradient); border-color: transparent; box-shadow: 0 0 20px var(--accent-glow); }
 
+    /* Contact Section */
+    .contact-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 40px 30px;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+
+    .contact-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .contact-card p { color: #94a3b8; margin-bottom: 25px; }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      padding: 12px 26px;
+      border-radius: 25px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-wa { background: #22c55e; color: white; box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
+    .contact-wa:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(34, 197, 94, 0.5); }
+
+    .contact-call { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: white; }
+    .contact-call:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-3px); }
+
     /* Footer */
     footer { 
       text-align: center; 
-      padding: 50px 20px 90px; 
+      padding: 40px 20px 80px; 
       color: #64748b; 
       font-size: 0.9rem; 
       border-top: 1px solid rgba(255, 255, 255, 0.06); 
-      margin-top: 90px; 
+      margin-top: 70px; 
     }
 
     /* Fixed Floating Actions */
     .fixed-actions {
       position: fixed;
-      bottom: 85px; 
+      bottom: 25px; 
       right: 20px;
       display: flex;
       flex-direction: column;
@@ -460,29 +538,50 @@
     .float-phone { background: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
     .float-wa { background: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
 
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+    }
+
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.2rem; }
+      .nav-phone span { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header Section -->
+  <!-- Header Navigation Section -->
   <header>
     <div class="header-pill">
       <div class="brand-logo">
         <div class="logo-box"></div>
         Sohail<span>Studio</span>
       </div>
-      <a href="https://wa.me/918955377472" target="_blank" class="hire-btn">
-        Hire Me <i class="fas fa-arrow-up-right-from-square"></i>
-      </a>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Demos & Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Navigation Right Side (Phone + Hire Button) -->
+      <div class="nav-right">
+        <a href="tel:+918955377472" class="nav-phone">
+          <i class="fas fa-phone-alt"></i>
+          <span>+91 8955377472</span>
+        </a>
+        <a href="https://wa.me/918955377472" target="_blank" class="hire-btn">
+          Hire Me <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
     </div>
   </header>
 
   <div class="container">
     
-    <!-- Hero Section with Background Grid & Quick Stats -->
+    <!-- Hero Section -->
     <section class="hero">
       <div class="hero-badge"><i class="fas fa-bolt"></i> Modern Web Design Studio</div>
       <h1>High Converting Websites <br><span>That Grow Your Business</span></h1>
@@ -511,7 +610,7 @@
     </section>
 
     <!-- Services Section -->
-    <div class="section-title">
+    <div class="section-title" id="services">
       <h2>Our Services</h2>
       <p>What we do best to level up your brand online</p>
     </div>
@@ -778,6 +877,24 @@
         <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Custom%20Portal" target="_blank" class="order-btn">Order Plan</a>
       </div>
 
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section-title" id="contact">
+      <h2>Get In Touch</h2>
+      <p>Let's build something amazing for your business</p>
+    </div>
+    <div class="contact-card">
+      <h3>Ready to Launch Your Website?</h3>
+      <p>Connect with us on WhatsApp or call directly to discuss your project requirements.</p>
+      <div class="contact-actions">
+        <a href="https://wa.me/918955377472" target="_blank" class="contact-btn contact-wa">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="tel:+918955377472" class="contact-btn contact-call">
+          <i class="fas fa-phone-alt"></i> Call +91 8955377472
+        </a>
+      </div>
     </div>
 
   </div>

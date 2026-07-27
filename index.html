@@ -6,7 +6,7 @@
   <title>Sohail Studio — Ultra Premium Websites</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
 
     :root {
       --bg: #05040a;
@@ -15,6 +15,7 @@
       --accent: #a855f7;
       --accent-glow: rgba(168, 85, 247, 0.35);
       --gradient: linear-gradient(135deg, #a855f7, #6366f1);
+      --gradient-fire: linear-gradient(135deg, #ff4694, #a855f7, #6366f1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
@@ -46,6 +47,11 @@
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
       50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.45); }
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), 0 0 30px rgba(99, 102, 241, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(255, 70, 148, 0.8), 0 0 45px rgba(168, 85, 247, 0.6); }
     }
 
     /* GLOBAL FLOATING BUTTON EFFECT FOR ALL BUTTONS */
@@ -82,27 +88,61 @@
       gap: 15px;
     }
 
+    /* TADAKTA BHADAKTA LOGO DESIGN */
     .brand-logo { 
-      font-weight: 800; 
-      font-size: 1.25rem; 
+      font-weight: 900; 
+      font-size: 1.35rem; 
       display: flex; 
       align-items: center; 
-      gap: 10px; 
+      gap: 12px; 
       letter-spacing: -0.5px;
       white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .brand-logo span { 
-      background: var(--gradient);
+    .brand-logo .logo-text-main {
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .brand-logo .logo-text-gradient { 
+      background: linear-gradient(135deg, #ff4694 0%, #a855f7 50%, #6366f1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
     }
 
     .logo-box {
-      width: 36px; height: 36px;
-      background: var(--gradient);
-      border-radius: 10px;
-      box-shadow: 0 0 15px var(--accent-glow);
+      width: 40px; 
+      height: 40px;
+      background: var(--gradient-fire);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.15rem;
+      position: relative;
+      animation: logoPulse 3s infinite ease-in-out;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .brand-logo:hover .logo-box {
+      transform: rotate(15deg) scale(1.12);
+      box-shadow: 0 0 30px rgba(255, 70, 148, 0.9), 0 0 50px rgba(168, 85, 247, 0.8);
+    }
+
+    .logo-box::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 14px;
+      background: var(--gradient-fire);
+      z-index: -1;
+      opacity: 0.7;
+      filter: blur(8px);
     }
 
     /* Navigation Links */
@@ -155,7 +195,7 @@
     }
 
     .hire-btn {
-      background: var(--gradient);
+      background: var(--gradient-fire);
       color: white;
       padding: 9px 20px;
       border-radius: 25px;
@@ -230,7 +270,7 @@
     .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
     .btn-main { 
-      background: var(--gradient); 
+      background: var(--gradient-fire); 
       color: white; 
       padding: 14px 32px; 
       border-radius: 30px; 
@@ -394,7 +434,7 @@
     }
 
     .portfolio-card:hover .portfolio-link {
-      background: var(--gradient);
+      background: var(--gradient-fire);
       border-color: transparent;
       box-shadow: 0 0 15px var(--accent-glow);
     }
@@ -429,7 +469,7 @@
       top: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--gradient);
+      background: var(--gradient-fire);
       padding: 4px 16px;
       border-radius: 12px;
       font-size: 0.75rem;
@@ -474,7 +514,7 @@
       display: block;
     }
 
-    .order-btn:hover { background: var(--gradient); border-color: transparent; box-shadow: 0 0 20px var(--accent-glow); }
+    .order-btn:hover { background: var(--gradient-fire); border-color: transparent; box-shadow: 0 0 20px var(--accent-glow); }
 
     /* Contact Section */
     .contact-card {
@@ -565,10 +605,14 @@
   <!-- Header Navigation Section -->
   <header>
     <div class="header-pill">
-      <div class="brand-logo">
-        <div class="logo-box"></div>
-        Sohail<span>Studio</span>
-      </div>
+      
+      <!-- Tadakta Bhadakta Animated Logo -->
+      <a href="#" class="brand-logo">
+        <div class="logo-box">
+          <i class="fas fa-code-merge"></i>
+        </div>
+        <span class="logo-text-main">Sohail</span><span class="logo-text-gradient">Studio</span>
+      </a>
 
       <!-- Navigation Links -->
       <ul class="nav-links">
@@ -875,7 +919,7 @@
           <li><i class="fas fa-check-circle"></i> Ultra Fast Load Speed</li>
           <li><i class="fas fa-check-circle"></i> Free Domain Setup</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Business%20Pro" target="_blank" class="order-btn" style="background: var(--gradient);">Order Plan</a>
+        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Business%20Pro" target="_blank" class="order-btn" style="background: var(--gradient-fire);">Order Plan</a>
       </div>
 
       <div class="price-card">

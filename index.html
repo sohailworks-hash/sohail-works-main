@@ -19,14 +19,18 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     
+    /* Background with Grid Pattern & Mesh Glow */
     body { 
       background-color: var(--bg); 
       color: #ffffff; 
       overflow-x: hidden; 
       line-height: 1.6;
       background-image: 
-        radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+        linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 45%);
+      background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
       background-attachment: fixed;
     }
 
@@ -116,6 +120,21 @@
     /* Hero Section */
     .hero { text-align: center; padding: 70px 0 40px; position: relative; }
 
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(99, 102, 241, 0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      filter: blur(50px);
+      pointer-events: none;
+    }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
@@ -178,6 +197,36 @@
     }
 
     .btn-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); }
+
+    /* Quick Hero Stats Strip */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 45px;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      background: rgba(20, 16, 40, 0.6);
+      border: 1px solid var(--border);
+      padding: 12px 24px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .stat-box h4 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #e9d5ff;
+    }
+
+    .stat-box p {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin: 0;
+    }
 
     /* Section Header */
     .section-title { text-align: center; margin: 70px 0 35px; }
@@ -433,14 +482,31 @@
 
   <div class="container">
     
-    <!-- Hero Section -->
+    <!-- Hero Section with Background Grid & Quick Stats -->
     <section class="hero">
       <div class="hero-badge"><i class="fas fa-bolt"></i> Modern Web Design Studio</div>
       <h1>High Converting Websites <br><span>That Grow Your Business</span></h1>
       <p>We build ultra-fast, mobile-responsive, and high-quality custom websites for business owners and consultants.</p>
+      
       <div class="hero-btns">
         <a href="#pricing" class="btn-main">View Plans</a>
         <a href="#portfolio" class="btn-outline">Our Work</a>
+      </div>
+
+      <!-- Quick Stats Strip -->
+      <div class="hero-stats">
+        <div class="stat-box">
+          <h4>13+ Live</h4>
+          <p>Demo Portfolios</p>
+        </div>
+        <div class="stat-box">
+          <h4>100%</h4>
+          <p>Mobile Responsive</p>
+        </div>
+        <div class="stat-box">
+          <h4>&lt; 1s</h4>
+          <p>Fast Load Speed</p>
+        </div>
       </div>
     </section>
 

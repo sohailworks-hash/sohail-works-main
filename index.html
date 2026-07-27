@@ -3,47 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio — Modern Websites For Modern Businesses</title>
+  <title>Sohail Studio — Ultra Premium Digital Experiences</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
     
     body {
-      background-color: #090514;
-      color: #f3f4f6;
-      line-height: 1.6;
+      background-color: #03000a;
+      color: #f8fafc;
       overflow-x: hidden;
-      position: relative;
+      line-height: 1.6;
     }
 
-    /* Cosmic Glow Background Grid */
-    body::before {
-      content: '';
+    /* Background Interactive Canvas */
+    #bg-canvas {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(147, 51, 234, 0.25), transparent 40%),
-        radial-gradient(circle at 80% 60%, rgba(99, 102, 241, 0.2), transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.15), transparent 40%);
-      pointer-events: none;
-      z-index: -2;
-    }
-
-    /* Animated Grid Lines overlay */
-    .bg-grid {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* Floating Pill Header */
+    /* Glassmorphism Header */
     header {
       position: sticky;
       top: 20px;
@@ -53,224 +40,256 @@
       z-index: 1000;
     }
 
-    .nav-box {
-      background: rgba(18, 11, 36, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      box-shadow: 0 0 25px rgba(147, 51, 234, 0.25);
+    .glass-nav {
+      background: rgba(15, 7, 32, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(168, 85, 247, 0.25);
       border-radius: 50px;
-      padding: 10px 24px;
+      padding: 12px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
+      transition: all 0.4s ease;
+    }
+
+    .glass-nav:hover {
+      border-color: rgba(168, 85, 247, 0.6);
+      box-shadow: 0 0 35px rgba(168, 85, 247, 0.3);
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
+      letter-spacing: -0.5px;
     }
 
     .logo-icon {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       background: linear-gradient(135deg, #a855f7, #6366f1);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 0.9rem;
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+      font-size: 1rem;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
+      animation: pulseGlow 3s infinite alternate;
     }
 
-    .logo-text span {
-      color: #a855f7;
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
+      100% { box-shadow: 0 0 25px rgba(168, 85, 247, 1); }
     }
 
-    .nav-links {
+    .logo span { color: #a855f7; }
+
+    .nav-menu {
       display: flex;
-      gap: 22px;
-      font-size: 0.88rem;
+      gap: 28px;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #94a3b8;
     }
 
-    .nav-links a {
+    .nav-menu a {
       transition: all 0.3s ease;
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: #c084fc;
-      text-shadow: 0 0 8px rgba(192, 132, 252, 0.6);
+    .nav-menu a:hover {
+      color: #e2e8f0;
+      text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
     }
 
-    .btn-hire {
-      background: linear-gradient(135deg, #a855f7, #6366f1);
+    .btn-glow-pill {
+      background: linear-gradient(135deg, #9333ea, #4f46e5);
       color: white;
-      padding: 8px 20px;
+      padding: 10px 22px;
       border-radius: 30px;
       font-weight: 700;
-      font-size: 0.85rem;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-hire:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
-    }
-
-    /* Hero Section Layout */
-    .hero {
-      max-width: 1200px;
-      margin: 60px auto 40px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-badge {
+      font-size: 0.88rem;
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(168, 85, 247, 0.12);
-      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-glow-pill:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 30px rgba(147, 51, 234, 0.9);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1200px;
+      margin: 70px auto 40px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.3);
       color: #d8b4fe;
-      padding: 6px 16px;
+      padding: 8px 18px;
       border-radius: 30px;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+      margin-bottom: 24px;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+      backdrop-filter: blur(10px);
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
     }
 
     .gradient-text {
-      background: linear-gradient(135deg, #e9d5ff, #c084fc, #818cf8);
+      background: linear-gradient(135deg, #f3e8ff, #c084fc, #818cf8, #38bdf8);
+      background-size: 300% 300%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+      animation: gradientShift 6s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .hero-sub {
       color: #94a3b8;
-      font-size: 1.05rem;
-      margin-top: 20px;
-      max-width: 520px;
+      font-size: 1.1rem;
+      margin-top: 22px;
+      max-width: 530px;
+      font-weight: 400;
     }
 
     .hero-author {
-      margin-top: 15px;
+      margin-top: 18px;
       color: #cbd5e1;
-      font-size: 0.92rem;
-    }
-
-    .hero-author strong {
-      color: white;
-    }
-
-    .hero-btns {
-      margin-top: 30px;
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn-glow {
-      background: linear-gradient(135deg, #9333ea, #4f46e5);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 12px;
-      font-weight: 700;
       font-size: 0.95rem;
-      box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-      transition: 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn-glow:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(147, 51, 234, 0.8);
-    }
-
-    .btn-wa-glow {
-      background: #16a34a;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      box-shadow: 0 0 20px rgba(22, 163, 74, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.3s;
-    }
-
-    .btn-wa-glow:hover {
-      background: #15803d;
-      box-shadow: 0 0 30px rgba(22, 163, 74, 0.7);
-    }
-
-    /* Mockup Showcase Window */
-    .mockup-container {
-      position: relative;
-      background: rgba(18, 11, 36, 0.8);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 0 40px rgba(147, 51, 234, 0.25);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .mockup-header {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 15px;
     }
 
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-red { background: #ef4444; }
-    .dot-yellow { background: #f59e0b; }
-    .dot-green { background: #10b981; }
+    .hero-btns {
+      margin-top: 35px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-    .mockup-url {
-      background: rgba(255, 255, 255, 0.05);
+    .btn-main {
+      background: linear-gradient(135deg, #a855f7, #6366f1);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.9);
+    }
+
+    .btn-whatsapp {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #4ade80;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-whatsapp:hover {
+      background: #22c55e;
+      color: white;
+      box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
+      transform: translateY(-4px);
+    }
+
+    /* 3D Glass Interactive Mockup */
+    .mockup-wrapper {
+      position: relative;
+      perspective: 1000px;
+    }
+
+    .glass-card-3d {
+      background: rgba(18, 10, 38, 0.65);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+      animation: floatSmooth 6s ease-in-out infinite;
+    }
+
+    @keyframes floatSmooth {
+      0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
+      50% { transform: translateY(-14px) rotateX(2deg) rotateY(-2deg); }
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+
+    .terminal-url {
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 20px;
-      padding: 4px 15px;
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-left: 10px;
+      padding: 4px 16px;
+      font-size: 0.78rem;
+      color: #a78bfa;
+      margin-left: 12px;
+      font-family: monospace;
     }
 
-    .mockup-body {
-      background: #090514;
-      border-radius: 12px;
-      height: 240px;
+    .terminal-body {
+      background: #070312;
+      border-radius: 16px;
+      padding: 30px 20px;
       border: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       flex-direction: column;
@@ -278,77 +297,106 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      min-height: 250px;
     }
 
-    .mockup-glow-circle {
+    .glowing-orb {
       position: absolute;
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      filter: blur(50px);
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #a855f7, #3b82f6);
+      filter: blur(60px);
       border-radius: 50%;
+      animation: pulseOrb 4s infinite alternate;
     }
 
-    .badge-tag {
+    @keyframes pulseOrb {
+      0% { opacity: 0.5; transform: scale(0.9); }
+      100% { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    /* Floating Badges around Mockup */
+    .float-badge {
       position: absolute;
-      background: rgba(18, 11, 36, 0.9);
-      border: 1px solid rgba(168, 85, 247, 0.5);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      background: rgba(18, 10, 38, 0.85);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.78rem;
       font-weight: 700;
-      color: #d8b4fe;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+      color: #e9d5ff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: floatBadge 5s ease-in-out infinite alternate;
     }
 
-    .tag-top-right { top: 20px; right: -15px; }
-    .tag-bottom-right { bottom: 30px; right: -10px; }
-    .tag-bottom-left { bottom: 15px; left: 15px; }
+    @keyframes floatBadge {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+
+    .badge-top-right { top: -15px; right: -15px; animation-delay: 0s; }
+    .badge-bottom-left { bottom: 20px; left: -20px; animation-delay: 1.5s; }
+    .badge-bottom-right { bottom: -15px; right: 10px; animation-delay: 2.5s; }
 
     /* Section Styling */
     .section-title {
       text-align: center;
-      margin: 80px 0 40px;
+      margin: 100px 0 50px;
       padding: 0 20px;
     }
 
     .section-title h2 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
     .section-title p {
       color: #94a3b8;
-      margin-top: 8px;
-      font-size: 0.95rem;
+      margin-top: 10px;
+      font-size: 1rem;
     }
 
-    /* Cards Grid */
+    /* Grid Layout */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 30px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
-    .card {
-      background: rgba(18, 11, 36, 0.6);
+    .glass-card {
+      background: rgba(15, 8, 33, 0.5);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 16px;
-      padding: 28px;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card:hover {
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(168, 85, 247, 0.15), transparent 40%);
+      pointer-events: none;
+    }
+
+    .glass-card:hover {
       border-color: rgba(168, 85, 247, 0.7);
-      transform: translateY(-6px);
-      box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
     }
 
     .card-tag {
@@ -356,193 +404,202 @@
       font-weight: 700;
       color: #c084fc;
       background: rgba(168, 85, 247, 0.15);
-      padding: 4px 12px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 15px;
       border: 1px solid rgba(168, 85, 247, 0.3);
+      padding: 5px 14px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 18px;
     }
 
     .card h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin-bottom: 10px;
+      font-weight: 700;
     }
 
     .card p {
       color: #94a3b8;
-      font-size: 0.88rem;
-      margin-bottom: 22px;
+      font-size: 0.9rem;
+      margin-bottom: 25px;
     }
 
-    .card-btn {
+    .card-link {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
-      padding: 10px;
-      border-radius: 10px;
-      font-size: 0.85rem;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.88rem;
       font-weight: 700;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 8px;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
-    .card-btn:hover {
+    .card-link:hover {
       background: linear-gradient(135deg, #a855f7, #6366f1);
       border-color: transparent;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+      color: white;
     }
 
     /* Pricing Section */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 25px;
-      max-width: 1050px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1080px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
     .price-card {
-      background: rgba(18, 11, 36, 0.6);
+      background: rgba(15, 8, 33, 0.5);
+      backdrop-filter: blur(15px);
       border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 18px;
-      padding: 30px;
+      border-radius: 22px;
+      padding: 35px;
+      transition: all 0.3s ease;
     }
 
     .price-card.featured {
       border: 2px solid #a855f7;
-      background: rgba(24, 13, 48, 0.9);
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
-      position: relative;
+      background: rgba(20, 10, 45, 0.85);
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.35);
+      transform: scale(1.03);
     }
 
     .price-amount {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      margin: 15px 0 5px;
+      margin: 18px 0 8px;
       color: white;
     }
 
     .price-features {
       list-style: none;
-      margin: 20px 0;
-      font-size: 0.88rem;
+      margin: 25px 0;
+      font-size: 0.9rem;
       color: #cbd5e1;
     }
 
     .price-features li {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
     .price-features i {
       color: #c084fc;
     }
 
-    /* Floating Fixed Buttons */
-    .floating-nav-buttons {
+    /* Floating Quick Buttons */
+    .fixed-actions {
       position: fixed;
       bottom: 25px;
       right: 25px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      z-index: 1000;
+      z-index: 9999;
     }
 
-    .float-icon {
-      width: 52px;
-      height: 52px;
+    .action-btn {
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: white;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
     }
 
-    .float-icon:hover { transform: scale(1.1); }
-    .float-wa { background: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.6); }
-    .float-call { background: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.6); }
+    .action-btn:hover { transform: scale(1.12) rotate(5deg); }
+    .btn-wa { background: #22c55e; box-shadow: 0 0 25px rgba(34, 197, 94, 0.7); }
+    .btn-call { background: #8b5cf6; box-shadow: 0 0 25px rgba(139, 92, 246, 0.7); }
 
     /* Footer */
     footer {
       text-align: center;
-      padding: 40px;
+      padding: 50px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       color: #64748b;
-      font-size: 0.85rem;
-      margin-top: 60px;
+      font-size: 0.88rem;
+      margin-top: 80px;
     }
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; text-align: center; }
       .hero-sub { margin: 20px auto; }
       .hero-btns { justify-content: center; }
-      .nav-links { display: none; }
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.7rem; }
+      .nav-menu { display: none; }
+      .price-card.featured { transform: scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-grid"></div>
+  <!-- Interactive Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
 
-  <!-- Floating Sticky Nav -->
+  <!-- Glass Floating Navigation -->
   <header>
-    <div class="nav-box">
+    <div class="glass-nav">
       <div class="logo">
         <div class="logo-icon"><i class="fas fa-sparkles"></i></div>
-        <div class="logo-text">Sohail <span>Studio</span></div>
+        <div>Sohail <span>Studio</span></div>
       </div>
-      <div class="nav-links">
-        <a href="#demos">Demos</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
+      <div class="nav-menu">
+        <a href="#demos">Live Demos</a>
+        <a href="#pricing">Packages</a>
+        <a href="https://wa.me/918955377472" target="_blank">Contact</a>
       </div>
-      <a href="https://wa.me/918955377472" target="_blank" class="btn-hire">Hire Me <i class="fas fa-arrow-up-right-from-square"></i></a>
+      <a href="https://wa.me/918955377472" target="_blank" class="btn-glow-pill">Hire Me <i class="fas fa-arrow-up-right-from-square"></i></a>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <div>
-      <div class="hero-badge"><i class="fas fa-sparkles"></i> Modern Websites For Modern Businesses</div>
+      <div class="pill-badge"><i class="fas fa-sparkles"></i> Ultra-Modern Web Agency</div>
       <h1>Modern Websites That Help <span class="gradient-text">Businesses Grow</span></h1>
-      <p class="hero-sub">High-converting, lightning-fast & mobile-optimized websites built specifically for CA firms, travel agencies, hotels, clinics, and local services.</p>
+      <p class="hero-sub">High-converting, lightning-fast & mobile-optimized websites built specifically for CA firms, travel agencies, hotels, clinics, and local consultancy businesses.</p>
       
-      <p class="hero-author"><i class="fas fa-sparkles" style="color: #c084fc;"></i> Hi, I'm <strong>Sohail Khan</strong>, founder of Sohail Studio.</p>
+      <p class="hero-author"><i class="fas fa-certificate" style="color: #c084fc;"></i> Designed & Crafted by <strong>Sohail Khan</strong></p>
 
       <div class="hero-btns">
-        <a href="#demos" class="btn-glow"><i class="fas fa-eye"></i> View Live Demos</a>
-        <a href="https://wa.me/918955377472" target="_blank" class="btn-wa-glow"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+        <a href="#demos" class="btn-main"><i class="fas fa-eye"></i> Explore Live Demos</a>
+        <a href="https://wa.me/918955377472" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
       </div>
     </div>
 
-    <!-- Right Animated Mockup Box -->
-    <div class="mockup-container">
-      <div class="mockup-header">
-        <div class="dot dot-red"></div>
-        <div class="dot dot-yellow"></div>
-        <div class="dot dot-green"></div>
-        <div class="mockup-url">sohailstudio.com</div>
-      </div>
-      <div class="mockup-body">
-        <div class="mockup-glow-circle"></div>
-        <i class="fas fa-laptop-code" style="font-size: 3.5rem; color: #c084fc; z-index: 2;"></i>
-        <p style="margin-top: 10px; font-weight: 700; z-index: 2;" class="gradient-text">Sohail Studio Live Preview</p>
+    <!-- 3D Interactive Card Showcase -->
+    <div class="mockup-wrapper">
+      <div class="glass-card-3d" id="tilt-card">
+        <div class="terminal-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="terminal-url">sohailstudio.com</div>
+        </div>
+        <div class="terminal-body">
+          <div class="glowing-orb"></div>
+          <i class="fas fa-laptop-code" style="font-size: 3.8rem; color: #c084fc; z-index: 2; filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.8));"></i>
+          <p style="margin-top: 15px; font-weight: 800; font-size: 1.1rem; z-index: 2;" class="gradient-text">Sohail Studio Interactive Preview</p>
+        </div>
       </div>
 
-      <div class="badge-tag tag-top-right"><i class="fas fa-sparkles"></i> Premium UI</div>
-      <div class="badge-tag tag-bottom-right"><i class="fas fa-bolt"></i> Fast Delivery</div>
-      <div class="badge-tag tag-bottom-left"><i class="fas fa-check-circle"></i> 100% Responsive</div>
+      <!-- Floating Badges -->
+      <div class="float-badge badge-top-right"><i class="fas fa-bolt" style="color: #eab308;"></i> 24h Fast Delivery</div>
+      <div class="float-badge badge-bottom-left"><i class="fas fa-mobile-screen" style="color: #38bdf8;"></i> 100% Mobile Ready</div>
+      <div class="float-badge badge-bottom-right"><i class="fas fa-magnifying-glass" style="color: #4ade80;"></i> Google SEO Ready</div>
     </div>
   </section>
 
@@ -550,62 +607,62 @@
   <section id="demos">
     <div class="section-title">
       <h2>Professional Websites <span class="gradient-text">For Every Industry</span></h2>
-      <p>Click any live demo to test the design and layout.</p>
+      <p>Click any live working demo below to explore design and performance.</p>
     </div>
 
     <div class="portfolio-grid">
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Finance & Tax</span>
           <h3>Iqra Associates</h3>
-          <p>Clean CA, GST, ITR & Tax consultant portal with direct lead capture.</p>
+          <p>Sleek, high-converting CA, GST, ITR & Tax consultant portal with instant lead form.</p>
         </div>
-        <a href="https://iqra-associates.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://iqra-associates.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Travel & Cabs</span>
           <h3>Sky Wings Travel</h3>
-          <p>Modern travel agency site for tour packages, cab booking & enquiries.</p>
+          <p>Modern travel agency site designed for cab bookings, tour packages & enquiries.</p>
         </div>
-        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Hospitality</span>
           <h3>Royal Ranthambore</h3>
-          <p>Luxury hotel resort showcase with room gallery & direct booking button.</p>
+          <p>Luxury resort & hotel showcase with room photo galleries & direct reservation buttons.</p>
         </div>
-        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Healthcare</span>
           <h3>Smile Care Dental</h3>
-          <p>Trustworthy medical layout for doctors, clinics & appointment bookings.</p>
+          <p>Clean, trustworthy layout for doctors, diagnostic centers & appointment scheduling.</p>
         </div>
-        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Real Estate</span>
           <h3>Prestige Real Estate</h3>
-          <p>Property showcase site for brokers & real estate agents with lead forms.</p>
+          <p>Dynamic property listing showcase portal for brokers and real estate agents.</p>
         </div>
-        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="card">
+      <div class="glass-card">
         <div>
           <span class="card-tag">Fitness</span>
           <h3>Elite Gym & Fitness</h3>
-          <p>High-energy gym page with workout plans, pricing & instant contact.</p>
+          <p>High-energy workout landing page with membership plan cards & direct contact.</p>
         </div>
-        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="card-btn">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
     </div>
   </section>
@@ -613,8 +670,8 @@
   <!-- Pricing Section -->
   <section id="pricing">
     <div class="section-title">
-      <h2>Affordable <span class="gradient-text">Packages</span></h2>
-      <p>High quality web development at honest prices.</p>
+      <h2>Affordable <span class="gradient-text">Pricing Packages</span></h2>
+      <p>High-end agency grade websites at honest prices.</p>
     </div>
 
     <div class="pricing-grid">
@@ -622,47 +679,139 @@
         <h3>Starter Page</h3>
         <div class="price-amount">₹2,999</div>
         <ul class="price-features">
-          <li><i class="fas fa-check"></i> Single Page Fast Site</li>
-          <li><i class="fas fa-check"></i> Mobile Responsive</li>
-          <li><i class="fas fa-check"></i> Direct WhatsApp Integration</li>
+          <li><i class="fas fa-check-circle"></i> Single Page Fast Site</li>
+          <li><i class="fas fa-check-circle"></i> 100% Mobile Responsive</li>
+          <li><i class="fas fa-check-circle"></i> Direct WhatsApp Button</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Starter%20Plan" target="_blank" class="card-btn">Order Starter Plan</a>
+        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Starter%20Plan" target="_blank" class="card-link">Order Plan</a>
       </div>
 
       <div class="price-card featured">
         <h3 class="gradient-text">Business Pro</h3>
         <div class="price-amount">₹4,999</div>
         <ul class="price-features">
-          <li><i class="fas fa-check"></i> Up to 5 Pages</li>
-          <li><i class="fas fa-check"></i> Custom Domain Setup</li>
-          <li><i class="fas fa-check"></i> Lead Contact Form + WhatsApp</li>
-          <li><i class="fas fa-check"></i> Google Search SEO Setup</li>
+          <li><i class="fas fa-check-circle"></i> Up to 5 Custom Pages</li>
+          <li><i class="fas fa-check-circle"></i> Custom Domain Integration</li>
+          <li><i class="fas fa-check-circle"></i> Lead Contact Form + WhatsApp</li>
+          <li><i class="fas fa-check-circle"></i> Google Search SEO Setup</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Business%20Pro%20Plan" target="_blank" class="btn-glow" style="width: 100%; justify-content: center;">Order Pro Plan</a>
+        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Business%20Pro%20Plan" target="_blank" class="btn-main" style="width: 100%; justify-content: center;">Order Pro Plan</a>
       </div>
 
       <div class="price-card">
         <h3>Custom Portal</h3>
         <div class="price-amount">₹8,999+</div>
         <ul class="price-features">
-          <li><i class="fas fa-check"></i> Unlimited Custom Pages</li>
-          <li><i class="fas fa-check"></i> Lead Storage Database</li>
-          <li><i class="fas fa-check"></i> Custom Features & Integrations</li>
+          <li><i class="fas fa-check-circle"></i> Unlimited Custom Pages</li>
+          <li><i class="fas fa-check-circle"></i> Lead Storage Database</li>
+          <li><i class="fas fa-check-circle"></i> Payment Integration</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20need%20Custom%20Portal" target="_blank" class="card-btn">Contact Me</a>
+        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20need%20Custom%20Portal" target="_blank" class="card-link">Contact Me</a>
       </div>
     </div>
   </section>
 
-  <!-- Floating Quick Buttons -->
-  <div class="floating-nav-buttons">
-    <a href="tel:+918955377472" class="float-icon float-call" title="Call Now"><i class="fas fa-phone"></i></a>
-    <a href="https://wa.me/918955377472" target="_blank" class="float-icon float-wa" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+  <!-- Quick Action Floating Buttons -->
+  <div class="fixed-actions">
+    <a href="tel:+918955377472" class="action-btn btn-call" title="Call Directly"><i class="fas fa-phone"></i></a>
+    <a href="https://wa.me/918955377472" target="_blank" class="action-btn btn-wa" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
   </div>
 
   <footer>
-    <p>© 2026 Sohail Studio. Designed & Developed by Sohail Khan.</p>
+    <p>© 2026 Sohail Studio. Designed & Crafted by Sohail Khan.</p>
   </footer>
 
+  <!-- Interactive JavaScript Animations Engine -->
+  <script>
+    // 1. Interactive Particle Canvas Background
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.6;
+        this.speedY = (Math.random() - 0.5) * 0.6;
+        this.color = `rgba(${168 + Math.random()*50}, ${85 + Math.random()*50}, 247, ${Math.random() * 0.5 + 0.2})`;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 70; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      // Draw dynamic constellation connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            ctx.strokeStyle = `rgba(168, 85, 247, ${0.15 - dist / 1100})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // 2. 3D Tilt Effect on Hero Card
+    const card3d = document.getElementById('tilt-card');
+    document.addEventListener('mousemove', (e) => {
+      if (window.innerWidth < 900) return;
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      card3d.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // 3. Mouse Tracking Glow Effect for Cards
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </body>
 </html>

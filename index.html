@@ -3,815 +3,579 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio — Ultra Premium Digital Experiences</title>
+  <title>Sohail Studio — Ultra Premium Websites</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-    
-    body {
-      background-color: #03000a;
-      color: #f8fafc;
-      overflow-x: hidden;
-      line-height: 1.6;
+    :root {
+      --bg: #05040a;
+      --card-bg: rgba(18, 14, 36, 0.65);
+      --border: rgba(168, 85, 247, 0.15);
+      --accent: #a855f7;
+      --accent-glow: rgba(168, 85, 247, 0.35);
+      --gradient: linear-gradient(135deg, #a855f7, #6366f1);
     }
 
-    /* Background Interactive Canvas */
-    #bg-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    
+    body { 
+      background-color: var(--bg); 
+      color: #ffffff; 
+      overflow-x: hidden; 
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+      background-attachment: fixed;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* Glassmorphism Header */
+    /* Keyframe Animations */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
+      50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.45); }
+    }
+
+    @keyframes floatAnimation {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Header Nav Bar */
     header {
+      padding: 18px 20px;
       position: sticky;
-      top: 20px;
-      max-width: 1100px;
-      margin: 20px auto 0;
-      padding: 0 20px;
+      top: 0;
       z-index: 1000;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    .glass-nav {
-      background: rgba(15, 7, 32, 0.65);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(168, 85, 247, 0.25);
-      border-radius: 50px;
-      padding: 12px 28px;
+    .header-pill {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: rgba(20, 16, 40, 0.7);
+      border: 1px solid var(--border);
+      padding: 10px 22px;
+      border-radius: 40px;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.1);
-      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: floatAnimation 4s ease-in-out infinite;
     }
 
-    .glass-nav:hover {
-      border-color: rgba(168, 85, 247, 0.6);
-      box-shadow: 0 0 35px rgba(168, 85, 247, 0.3);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 1.3rem;
+    .brand-logo { 
+      font-weight: 800; 
+      font-size: 1.25rem; 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
       letter-spacing: -0.5px;
     }
 
-    .logo-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1rem;
-      box-shadow: 0 0 15px rgba(168, 85, 247, 0.8);
-      animation: pulseGlow 3s infinite alternate;
-    }
-
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.5); }
-      100% { box-shadow: 0 0 25px rgba(168, 85, 247, 1); }
-    }
-
-    .logo span { color: #a855f7; }
-
-    .nav-menu {
-      display: flex;
-      gap: 28px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #94a3b8;
-    }
-
-    .nav-menu a {
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav-menu a:hover {
-      color: #e2e8f0;
-      text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
-    }
-
-    .btn-glow-pill {
-      background: linear-gradient(135deg, #9333ea, #4f46e5);
-      color: white;
-      padding: 10px 22px;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-glow-pill:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 0 30px rgba(147, 51, 234, 0.9);
-    }
-
-    /* Hero Section */
-    .hero {
-      max-width: 1200px;
-      margin: 70px auto 40px;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(168, 85, 247, 0.1);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      color: #d8b4fe;
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #f3e8ff, #c084fc, #818cf8, #38bdf8);
-      background-size: 300% 300%;
+    .brand-logo span { 
+      background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: gradientShift 6s ease infinite;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .logo-box {
+      width: 36px; height: 36px;
+      background: var(--gradient);
+      border-radius: 10px;
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
-    .hero-sub {
-      color: #94a3b8;
-      font-size: 1.1rem;
-      margin-top: 22px;
-      max-width: 530px;
+    .hire-btn {
+      background: var(--gradient);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .hire-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+    }
+
+    /* Main Container */
+    .container { max-width: 1050px; margin: 0 auto; padding: 0 20px; }
+
+    /* Hero Section */
+    .hero { text-align: center; padding: 70px 0 40px; position: relative; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 30px;
+      color: #d8b4fe;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 25px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 { 
+      font-size: 3rem; 
+      font-weight: 800; 
+      line-height: 1.2; 
+      margin-bottom: 20px; 
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span { 
+      background: linear-gradient(135deg, #e9d5ff 0%, #a855f7 50%, #6366f1 100%); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+
+    .hero p { 
+      font-size: 1.1rem; 
+      color: #94a3b8; 
+      max-width: 620px; 
+      margin: 0 auto 35px; 
       font-weight: 400;
     }
 
-    .hero-author {
-      margin-top: 18px;
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
-    .hero-btns {
-      margin-top: 35px;
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .btn-main {
-      background: linear-gradient(135deg, #a855f7, #6366f1);
-      color: white;
-      padding: 14px 32px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 1rem;
-      box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+    .btn-main { 
+      background: var(--gradient); 
+      color: white; 
+      padding: 14px 32px; 
+      border-radius: 30px; 
+      font-weight: 700; 
+      box-shadow: 0 0 25px var(--accent-glow);
       transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
     }
 
-    .btn-main:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 40px rgba(168, 85, 247, 0.9);
-    }
+    .btn-main:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(168, 85, 247, 0.6); }
 
-    .btn-whatsapp {
-      background: rgba(34, 197, 94, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.4);
-      color: #4ade80;
-      padding: 14px 28px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.3s ease;
+    .btn-outline { 
+      border: 1px solid var(--border); 
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px 32px; 
+      border-radius: 30px; 
+      font-weight: 600; 
       backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
 
-    .btn-whatsapp:hover {
-      background: #22c55e;
-      color: white;
-      box-shadow: 0 0 30px rgba(34, 197, 94, 0.7);
-      transform: translateY(-4px);
-    }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); }
 
-    /* 3D Glass Interactive Mockup */
-    .mockup-wrapper {
-      position: relative;
-      perspective: 1000px;
-    }
+    /* Section Header */
+    .section-title { text-align: center; margin: 70px 0 35px; }
+    .section-title h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+    .section-title p { color: #94a3b8; font-size: 1rem; margin-top: 6px; }
 
-    .glass-card-3d {
-      background: rgba(18, 10, 38, 0.65);
-      backdrop-filter: blur(25px);
-      border: 1px solid rgba(168, 85, 247, 0.3);
+    /* Services Grid */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+    .service-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 30px 25px;
       border-radius: 24px;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.15);
+    }
+
+    .service-card i { font-size: 2.2rem; color: #c084fc; margin-bottom: 18px; display: inline-block; }
+    .service-card h3 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
+    .service-card p { color: #94a3b8; font-size: 0.92rem; }
+
+    /* Portfolio Section CSS (Image Grid Included) */
+    .portfolio-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+      gap: 25px; 
+    }
+    
+    .portfolio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portfolio-card:hover { 
+      transform: translateY(-8px); 
+      border-color: rgba(168, 85, 247, 0.5);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.2);
+    }
+
+    .portfolio-img-box {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .portfolio-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.5s ease;
+    }
+
+    .portfolio-card:hover .portfolio-img-box img {
+      transform: scale(1.08);
+    }
+
+    .portfolio-content {
       padding: 22px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.15);
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease-out;
-      animation: floatSmooth 6s ease-in-out infinite;
-    }
-
-    @keyframes floatSmooth {
-      0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); }
-      50% { transform: translateY(-14px) rotateX(2deg) rotateY(-2deg); }
-    }
-
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .dot { width: 11px; height: 11px; border-radius: 50%; }
-    .dot-r { background: #ff5f56; }
-    .dot-y { background: #ffbd2e; }
-    .dot-g { background: #27c93f; }
-
-    .terminal-url {
-      background: rgba(255, 255, 255, 0.06);
-      border-radius: 20px;
-      padding: 4px 16px;
-      font-size: 0.78rem;
-      color: #a78bfa;
-      margin-left: 12px;
-      font-family: monospace;
-    }
-
-    .terminal-body {
-      background: #070312;
-      border-radius: 16px;
-      padding: 30px 20px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      min-height: 250px;
+      flex-grow: 1;
     }
 
-    .glowing-orb {
-      position: absolute;
-      width: 140px;
-      height: 140px;
-      background: linear-gradient(135deg, #a855f7, #3b82f6);
-      filter: blur(60px);
-      border-radius: 50%;
-      animation: pulseOrb 4s infinite alternate;
-    }
-
-    @keyframes pulseOrb {
-      0% { opacity: 0.5; transform: scale(0.9); }
-      100% { opacity: 0.9; transform: scale(1.2); }
-    }
-
-    /* Floating Badges around Mockup */
-    .float-badge {
-      position: absolute;
-      background: rgba(18, 10, 38, 0.85);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(168, 85, 247, 0.4);
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #e9d5ff;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 85, 247, 0.3);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      animation: floatBadge 5s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatBadge {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
-    }
-
-    .badge-top-right { top: -15px; right: -15px; animation-delay: 0s; }
-    .badge-bottom-left { bottom: 20px; left: -20px; animation-delay: 1.5s; }
-    .badge-bottom-right { bottom: -15px; right: 10px; animation-delay: 2.5s; }
-
-    /* Section Styling */
-    .section-title {
-      text-align: center;
-      margin: 100px 0 50px;
-      padding: 0 20px;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .section-title p {
-      color: #94a3b8;
-      margin-top: 10px;
-      font-size: 1rem;
-    }
-
-    /* Grid Layout */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .glass-card {
-      background: rgba(15, 8, 33, 0.5);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 20px;
-      padding: 30px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glass-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(168, 85, 247, 0.15), transparent 40%);
-      pointer-events: none;
-    }
-
-    .glass-card:hover {
-      border-color: rgba(168, 85, 247, 0.7);
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 15px 35px rgba(147, 51, 234, 0.3);
-    }
-
-    .card-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #c084fc;
+    .portfolio-tag {
+      display: inline-block;
+      padding: 4px 12px;
       background: rgba(168, 85, 247, 0.15);
       border: 1px solid rgba(168, 85, 247, 0.3);
-      padding: 5px 14px;
-      border-radius: 30px;
-      display: inline-block;
-      margin-bottom: 18px;
-    }
-
-    .card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .card p {
-      color: #94a3b8;
-      font-size: 0.9rem;
-      margin-bottom: 25px;
-    }
-
-    .card-link {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-      padding: 12px;
+      color: #d8b4fe;
       border-radius: 12px;
-      font-size: 0.88rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      display: flex;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    .portfolio-card h3 { font-size: 1.3rem; margin-bottom: 8px; font-weight: 700; }
+    .portfolio-card p { color: #94a3b8; font-size: 0.88rem; margin-bottom: 20px; flex-grow: 1; }
+    
+    .portfolio-link { 
+      color: #ffffff; 
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-weight: 700; 
+      font-size: 0.88rem; 
+      display: inline-flex; 
+      align-items: center; 
       justify-content: center;
-      align-items: center;
-      gap: 8px;
+      gap: 8px; 
       transition: all 0.3s ease;
     }
 
-    .card-link:hover {
-      background: linear-gradient(135deg, #a855f7, #6366f1);
+    .portfolio-card:hover .portfolio-link {
+      background: var(--gradient);
       border-color: transparent;
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-      color: white;
+      box-shadow: 0 0 15px var(--accent-glow);
     }
 
     /* Pricing Section */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
     .price-card {
-      background: rgba(15, 8, 33, 0.5);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(168, 85, 247, 0.2);
-      border-radius: 22px;
-      padding: 35px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px 26px;
+      backdrop-filter: blur(14px);
+      position: relative;
       transition: all 0.3s ease;
     }
 
+    .price-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(168, 85, 247, 0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(168, 85, 247, 0.15);
+    }
+
     .price-card.featured {
-      border: 2px solid #a855f7;
-      background: rgba(20, 10, 45, 0.85);
-      box-shadow: 0 0 40px rgba(168, 85, 247, 0.35);
-      transform: scale(1.03);
+      border-color: #a855f7;
+      animation: pulseGlow 3s infinite ease-in-out;
+      background: rgba(25, 18, 48, 0.75);
     }
 
-    .price-amount {
-      font-size: 2.5rem;
+    .price-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gradient);
+      padding: 4px 16px;
+      border-radius: 12px;
+      font-size: 0.75rem;
       font-weight: 800;
-      margin: 18px 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .card-title { font-size: 1.35rem; font-weight: 700; color: #f3e8ff; }
+    
+    .price-amount {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin: 16px 0;
       color: white;
-    }
-
-    .price-features {
-      list-style: none;
-      margin: 25px 0;
-      font-size: 0.9rem;
-      color: #cbd5e1;
-    }
-
-    .price-features li {
-      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 4px;
+      line-height: 1.1;
+      letter-spacing: normal;
     }
 
-    .price-features i {
-      color: #c084fc;
+    .price-amount .currency {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-weight: 700;
+      color: #ffffff;
+      padding-right: 2px;
     }
 
-    /* Floating Quick Buttons */
+    .features-list { list-style: none; margin: 22px 0 28px; }
+    .features-list li { margin-bottom: 14px; display: flex; align-items: center; gap: 12px; font-size: 0.93rem; color: #cbd5e1; }
+    .features-list li i { color: #c084fc; font-size: 0.95rem; }
+
+    .order-btn {
+      width: 100%;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .order-btn:hover { background: var(--gradient); border-color: transparent; box-shadow: 0 0 20px var(--accent-glow); }
+
+    /* Footer */
+    footer { 
+      text-align: center; 
+      padding: 50px 20px 90px; 
+      color: #64748b; 
+      font-size: 0.9rem; 
+      border-top: 1px solid rgba(255, 255, 255, 0.06); 
+      margin-top: 90px; 
+    }
+
+    /* Fixed Floating Actions */
     .fixed-actions {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      bottom: 85px; 
+      right: 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      z-index: 9999;
+      z-index: 99999;
     }
 
-    .action-btn {
-      width: 54px;
-      height: 54px;
+    .float-btn {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       color: white;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       transition: all 0.3s ease;
     }
 
-    .action-btn:hover { transform: scale(1.12) rotate(5deg); }
-    .btn-wa { background: #22c55e; box-shadow: 0 0 25px rgba(34, 197, 94, 0.7); }
-    .btn-call { background: #8b5cf6; box-shadow: 0 0 25px rgba(139, 92, 246, 0.7); }
+    .float-btn:hover { transform: scale(1.1); }
+    .float-phone { background: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+    .float-wa { background: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 50px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      color: #64748b;
-      font-size: 0.88rem;
-      margin-top: 80px;
-    }
-
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; }
-      .hero-sub { margin: 20px auto; }
-      .hero-btns { justify-content: center; }
-      .hero h1 { font-size: 2.7rem; }
-      .nav-menu { display: none; }
-      .price-card.featured { transform: scale(1); }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Interactive Background Canvas -->
-  <canvas id="bg-canvas"></canvas>
-
-  <!-- Glass Floating Navigation -->
+  <!-- Header Section -->
   <header>
-    <div class="glass-nav">
-      <div class="logo">
-        <div class="logo-icon"><i class="fas fa-sparkles"></i></div>
-        <div>Sohail <span>Studio</span></div>
+    <div class="header-pill">
+      <div class="brand-logo">
+        <div class="logo-box"></div>
+        Sohail<span>Studio</span>
       </div>
-      <div class="nav-menu">
-        <a href="#demos">Live Demos</a>
-        <a href="#pricing">Packages</a>
-        <a href="https://wa.me/918955377472" target="_blank">Contact</a>
-      </div>
-      <a href="https://wa.me/918955377472" target="_blank" class="btn-glow-pill">Hire Me <i class="fas fa-arrow-up-right-from-square"></i></a>
+      <a href="https://wa.me/918955377472" target="_blank" class="hire-btn">
+        Hire Me <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div>
-      <div class="pill-badge"><i class="fas fa-sparkles"></i> Ultra-Modern Web Agency</div>
-      <h1>Modern Websites That Help <span class="gradient-text">Businesses Grow</span></h1>
-      <p class="hero-sub">High-converting, lightning-fast & mobile-optimized websites built specifically for CA firms, travel agencies, hotels, clinics, and local consultancy businesses.</p>
-      
-      <p class="hero-author"><i class="fas fa-certificate" style="color: #c084fc;"></i> Designed & Crafted by <strong>Sohail Khan</strong></p>
-
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-badge"><i class="fas fa-bolt"></i> Modern Web Design Studio</div>
+      <h1>High Converting Websites <br><span>That Grow Your Business</span></h1>
+      <p>We build ultra-fast, mobile-responsive, and high-quality custom websites for business owners and consultants.</p>
       <div class="hero-btns">
-        <a href="#demos" class="btn-main"><i class="fas fa-eye"></i> Explore Live Demos</a>
-        <a href="https://wa.me/918955377472" target="_blank" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+        <a href="#pricing" class="btn-main">View Plans</a>
+        <a href="#portfolio" class="btn-outline">Our Work</a>
       </div>
-    </div>
+    </section>
 
-    <!-- 3D Interactive Card Showcase -->
-    <div class="mockup-wrapper">
-      <div class="glass-card-3d" id="tilt-card">
-        <div class="terminal-header">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <div class="terminal-url">sohailstudio.com</div>
-        </div>
-        <div class="terminal-body">
-          <div class="glowing-orb"></div>
-          <i class="fas fa-laptop-code" style="font-size: 3.8rem; color: #c084fc; z-index: 2; filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.8));"></i>
-          <p style="margin-top: 15px; font-weight: 800; font-size: 1.1rem; z-index: 2;" class="gradient-text">Sohail Studio Interactive Preview</p>
-        </div>
-      </div>
-
-      <!-- Floating Badges -->
-      <div class="float-badge badge-top-right"><i class="fas fa-bolt" style="color: #eab308;"></i> 24h Fast Delivery</div>
-      <div class="float-badge badge-bottom-left"><i class="fas fa-mobile-screen" style="color: #38bdf8;"></i> 100% Mobile Ready</div>
-      <div class="float-badge badge-bottom-right"><i class="fas fa-magnifying-glass" style="color: #4ade80;"></i> Google SEO Ready</div>
-    </div>
-  </section>
-
-  <!-- Demos Section -->
-  <section id="demos">
+    <!-- Services Section -->
     <div class="section-title">
-      <h2>Professional Websites <span class="gradient-text">For Every Industry</span></h2>
-      <p>Click any live working demo below to explore design and performance.</p>
+      <h2>Our Services</h2>
+      <p>What we do best to level up your brand online</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Custom Web Design</h3>
+        <p>Tailor-made sleek layouts built from scratch to match your exact business vision.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-mobile-screen-button"></i>
+        <h3>100% Mobile Responsive</h3>
+        <p>Flawless experience on iPhones, Androids, tablets, and desktop displays.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-bolt"></i>
+        <h3>Lightning Fast Speed</h3>
+        <p>Optimized code ensuring zero lag and under 1-second loading speeds.</p>
+      </div>
     </div>
 
+    <!-- Portfolio Section with Live Images -->
+    <div class="section-title" id="portfolio">
+      <h2>Recent Live Projects</h2>
+      <p>Take a look at some of our featured client websites</p>
+    </div>
+    
     <div class="portfolio-grid">
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Finance & Tax</span>
+      
+      <!-- Project 1: Iqra Associates -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-box">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" alt="Iqra Associates Preview">
+        </div>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">GST & Accounting</span>
           <h3>Iqra Associates</h3>
-          <p>Sleek, high-converting CA, GST, ITR & Tax consultant portal with instant lead form.</p>
+          <p>Professional tax consulting & GST filing business portal with interactive service list and WhatsApp integration.</p>
+          <a href="https://iqra-associates.vercel.app/" target="_blank" class="portfolio-link">
+            View Live Project <i class="fas fa-external-link-alt"></i>
+          </a>
         </div>
-        <a href="https://iqra-associates.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
       </div>
 
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Travel & Cabs</span>
-          <h3>Sky Wings Travel</h3>
-          <p>Modern travel agency site designed for cab bookings, tour packages & enquiries.</p>
+      <!-- Project 2: Corporate Business Site -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-box">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Business Growth Preview">
         </div>
-        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">Business Agency</span>
+          <h3>Corporate Business Pro</h3>
+          <p>Modern high-converting web layout tailored for local agency growth, lead generation, and client booking.</p>
+          <a href="https://wa.me/918955377472?text=I%20want%20a%20demo%20like%20Corporate%20Business" target="_blank" class="portfolio-link">
+            Request Demo <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Hospitality</span>
-          <h3>Royal Ranthambore</h3>
-          <p>Luxury resort & hotel showcase with room photo galleries & direct reservation buttons.</p>
+      <!-- Project 3: Modern E-Commerce / Store -->
+      <div class="portfolio-card">
+        <div class="portfolio-img-box">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800&auto=format&fit=crop" alt="E-commerce Preview">
         </div>
-        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
+        <div class="portfolio-content">
+          <span class="portfolio-tag">Product Catalog</span>
+          <h3>Sohail Store Showcase</h3>
+          <p>Fast loading product showcase portal featuring mobile checkout, WhatsApp orders, and ultra-sleek UI.</p>
+          <a href="https://wa.me/918955377472?text=I%20want%20a%20demo%20like%20Store%20Showcase" target="_blank" class="portfolio-link">
+            Request Demo <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Healthcare</span>
-          <h3>Smile Care Dental</h3>
-          <p>Clean, trustworthy layout for doctors, diagnostic centers & appointment scheduling.</p>
-        </div>
-        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
-      </div>
-
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Real Estate</span>
-          <h3>Prestige Real Estate</h3>
-          <p>Dynamic property listing showcase portal for brokers and real estate agents.</p>
-        </div>
-        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
-      </div>
-
-      <div class="glass-card">
-        <div>
-          <span class="card-tag">Fitness</span>
-          <h3>Elite Gym & Fitness</h3>
-          <p>High-energy workout landing page with membership plan cards & direct contact.</p>
-        </div>
-        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="card-link">View Live Site <i class="fas fa-external-link-alt"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing">
-    <div class="section-title">
-      <h2>Affordable <span class="gradient-text">Pricing Packages</span></h2>
-      <p>High-end agency grade websites at honest prices.</p>
     </div>
 
+    <!-- Pricing Section -->
+    <div class="section-title" id="pricing">
+      <h2>Simple Transparent Pricing</h2>
+      <p>Choose the best plan for your business growth</p>
+    </div>
     <div class="pricing-grid">
+      
       <div class="price-card">
-        <h3>Starter Page</h3>
-        <div class="price-amount">₹2,999</div>
-        <ul class="price-features">
+        <div class="card-title">Starter Page</div>
+        <div class="price-amount"><span class="currency">₹</span>2,999</div>
+        <ul class="features-list">
           <li><i class="fas fa-check-circle"></i> Single Page Fast Site</li>
           <li><i class="fas fa-check-circle"></i> 100% Mobile Responsive</li>
           <li><i class="fas fa-check-circle"></i> Direct WhatsApp Button</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Starter%20Plan" target="_blank" class="card-link">Order Plan</a>
+        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Starter%20Page" target="_blank" class="order-btn">Order Plan</a>
       </div>
 
       <div class="price-card featured">
-        <h3 class="gradient-text">Business Pro</h3>
-        <div class="price-amount">₹4,999</div>
-        <ul class="price-features">
+        <div class="card-title" style="color: #c084fc;">Business Pro</div>
+        <div class="price-amount"><span class="currency">₹</span>4,999</div>
+        <ul class="features-list">
           <li><i class="fas fa-check-circle"></i> Up to 5 Custom Pages</li>
-          <li><i class="fas fa-check-circle"></i> Custom Domain Integration</li>
-          <li><i class="fas fa-check-circle"></i> Lead Contact Form + WhatsApp</li>
-          <li><i class="fas fa-check-circle"></i> Google Search SEO Setup</li>
+          <li><i class="fas fa-check-circle"></i> Ultra Fast Load Speed</li>
+          <li><i class="fas fa-check-circle"></i> Free Domain Setup</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20want%20Business%20Pro%20Plan" target="_blank" class="btn-main" style="width: 100%; justify-content: center;">Order Pro Plan</a>
+        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Business%20Pro" target="_blank" class="order-btn" style="background: var(--gradient);">Order Plan</a>
       </div>
 
       <div class="price-card">
-        <h3>Custom Portal</h3>
-        <div class="price-amount">₹8,999+</div>
-        <ul class="price-features">
-          <li><i class="fas fa-check-circle"></i> Unlimited Custom Pages</li>
-          <li><i class="fas fa-check-circle"></i> Lead Storage Database</li>
-          <li><i class="fas fa-check-circle"></i> Payment Integration</li>
+        <div class="card-title">Custom Portal</div>
+        <div class="price-amount"><span class="currency">₹</span>8,999+</div>
+        <ul class="features-list">
+          <li><i class="fas fa-check-circle"></i> Multi-page Advanced Portal</li>
+          <li><i class="fas fa-check-circle"></i> Custom Features & Design</li>
+          <li><i class="fas fa-check-circle"></i> Priority 24/7 Support</li>
         </ul>
-        <a href="https://wa.me/918955377472?text=Hi%20Sohail,%20I%20need%20Custom%20Portal" target="_blank" class="card-link">Contact Me</a>
+        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Custom%20Portal" target="_blank" class="order-btn">Order Plan</a>
       </div>
-    </div>
-  </section>
 
-  <!-- Quick Action Floating Buttons -->
-  <div class="fixed-actions">
-    <a href="tel:+918955377472" class="action-btn btn-call" title="Call Directly"><i class="fas fa-phone"></i></a>
-    <a href="https://wa.me/918955377472" target="_blank" class="action-btn btn-wa" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
   </div>
 
+  <!-- Footer -->
   <footer>
-    <p>© 2026 Sohail Studio. Designed & Crafted by Sohail Khan.</p>
+    <p>© 2026 Sohail Studio. All rights reserved.</p>
   </footer>
 
-  <!-- Interactive JavaScript Animations Engine -->
-  <script>
-    // 1. Interactive Particle Canvas Background
-    const canvas = document.getElementById('bg-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
+  <!-- Floating Call & WhatsApp Action Buttons -->
+  <div class="fixed-actions">
+    <a href="tel:+918955377472" class="float-btn float-phone"><i class="fas fa-phone"></i></a>
+    <a href="https://wa.me/918955377472" target="_blank" class="float-btn float-wa"><i class="fab fa-whatsapp"></i></a>
+  </div>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.6;
-        this.speedY = (Math.random() - 0.5) * 0.6;
-        this.color = `rgba(${168 + Math.random()*50}, ${85 + Math.random()*50}, 247, ${Math.random() * 0.5 + 0.2})`;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-      }
-
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    for (let i = 0; i < 70; i++) {
-      particles.push(new Particle());
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      // Draw dynamic constellation connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < 110) {
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.15 - dist / 1100})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
-    // 2. 3D Tilt Effect on Hero Card
-    const card3d = document.getElementById('tilt-card');
-    document.addEventListener('mousemove', (e) => {
-      if (window.innerWidth < 900) return;
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-      card3d.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    });
-
-    // 3. Mouse Tracking Glow Effect for Cards
-    document.querySelectorAll('.glass-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-      });
-    });
-  </script>
 </body>
 </html>

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio | 3D Interactive Portfolio & Demos</title>
+  <title>Sohail Studio | 3D Interactive Portfolio & Demo Websites</title>
   <style>
+    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
@@ -18,6 +19,7 @@
       overflow-x: hidden;
     }
 
+    /* 3D Canvas Background */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -28,6 +30,7 @@
       pointer-events: none;
     }
 
+    /* Header & Navigation */
     header {
       display: flex;
       justify-content: space-between;
@@ -60,8 +63,9 @@
 
     nav a:hover { color: #66fcf1; }
 
+    /* Hero Section */
     .hero {
-      height: 70vh;
+      height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -83,16 +87,16 @@
       font-size: 1.2rem;
       color: #c5c6c7;
       max-width: 600px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
 
-    section { padding: 60px 8%; text-align: center; }
+    section { padding: 50px 8%; text-align: center; }
     .section-title { font-size: 2.2rem; margin-bottom: 40px; color: #66fcf1; }
 
     /* 3D Demos Grid */
     .demo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       perspective: 1000px;
     }
@@ -113,28 +117,29 @@
 
     .demo-card:hover { border-color: #66fcf1; }
 
-    .demo-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }
-    .demo-card p { color: #c5c6c7; font-size: 0.85rem; margin-bottom: 15px; }
+    .demo-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
+    .demo-card p { color: #c5c6c7; font-size: 0.85rem; margin-bottom: 20px; }
 
     .demo-link {
-      display: inline-block;
-      padding: 8px 18px;
+      display: block;
+      padding: 10px 18px;
       background: #45a29e;
       color: #0b0c10;
       font-weight: bold;
       border-radius: 20px;
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
       text-align: center;
     }
 
     .demo-link:hover {
       background: #66fcf1;
-      box-shadow: 0 0 12px rgba(102, 252, 241, 0.6);
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.8);
+      transform: translateY(-2px);
     }
 
-    /* Contact Details Box */
+    /* Contact Details Section */
     .contact-box {
       max-width: 600px;
       margin: 0 auto;
@@ -147,7 +152,7 @@
     .contact-info p { margin: 15px 0; color: #c5c6c7; font-size: 1.1rem; }
     .contact-info a { color: #66fcf1; text-decoration: none; font-weight: bold; }
 
-    /* Floating Quick Buttons */
+    /* FLOATING QUICK CONTACT BUTTONS */
     .floating-buttons {
       position: fixed;
       bottom: 30px;
@@ -169,6 +174,7 @@
       text-decoration: none;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .float-btn svg { width: 26px; height: 26px; fill: white; }
@@ -181,6 +187,7 @@
     @media(max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
       header { padding: 15px 5%; }
+      .floating-buttons { bottom: 20px; right: 20px; }
     }
   </style>
 
@@ -188,8 +195,10 @@
 </head>
 <body>
 
+  <!-- 3D Canvas Background -->
   <canvas id="bg-canvas"></canvas>
 
+  <!-- Navigation Bar -->
   <header>
     <div class="logo">Sohail Studio</div>
     <nav>
@@ -199,137 +208,138 @@
     </nav>
   </header>
 
+  <!-- Hero Banner -->
   <section class="hero" id="home">
     <h1>Sohail Studio</h1>
-    <p>3D Interactive Portfolio & Demo Websites Showcase</p>
+    <p>3D Interactive Portfolio & Client Projects Showcase</p>
   </section>
 
-  <!-- 13 DEMO WEBSITES SECTION -->
+  <!-- 13 REAL DEMO WEBSITES SHOWCASE -->
   <section id="demos">
-    <h2 class="section-title">Our 13 Demo Websites</h2>
+    <h2 class="section-title">Our Live Demo Projects (13 Websites)</h2>
     <div class="demo-grid">
       
       <!-- Demo 1 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 01 - Portfolio</h3>
-          <p>3D Interactive agency design template.</p>
+          <h3>Iqra Associates</h3>
+          <p>Professional Consultancy & Legal Services Website.</p>
         </div>
-        <a href="https://sohail-studio2.vercel.app/" target="_blank" class="demo-link">Live Demo 🔗</a>
+        <a href="https://iqra-associates.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 2 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 02 - Cinematic</h3>
-          <p>Videography & wedding layout.</p>
+          <h3>Bright Future School</h3>
+          <p>Educational Institute & Academy Portal.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://bright-future-school-tau.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 3 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 03 - VFX Showcase</h3>
-          <p>Hollywood editing style portfolio.</p>
+          <h3>Glow Lux Salon & Spa</h3>
+          <p>Beauty, Spa & Luxury Salon Landing Page.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://glow-lux-salon-spa.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 4 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 04 - Studio Concept</h3>
-          <p>Modern dark-theme studio landing page.</p>
+          <h3>Sharma Associates</h3>
+          <p>Corporate Business & Financial Consultants.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://sharma-associates-consultant.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 5 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 05 - Photography</h3>
-          <p>High-resolution photo gallery showcase.</p>
+          <h3>Elite Gym</h3>
+          <p>Fitness, Workout & Gym Membership Site.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 6 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 06 - Drone Coverage</h3>
-          <p>Aerial cinematography concept site.</p>
+          <h3>Alveera Enterprises</h3>
+          <p>Enterprise Services & Business Portfolio.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://alveeraenterprises.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 7 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 07 - Creative Agency</h3>
-          <p>Minimalist aesthetic agency layout.</p>
+          <h3>Royal Palace</h3>
+          <p>Hotel, Resort & Luxury Banquet Hall Web Layout.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://royal-palace-xi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 8 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 08 - Film Production</h3>
-          <p>Full-screen video background template.</p>
+          <h3>Fresh Mart Medical</h3>
+          <p>Pharmacy & Healthcare Store Front-end.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://fresh-mart-medical.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 9 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 09 - Personal Brand</h3>
-          <p>Content creator & influencer portfolio.</p>
+          <h3>Smile Care Dental Clinic</h3>
+          <p>Doctor Booking & Healthcare Dental Site.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 10 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 10 - Motion Graphics</h3>
-          <p>Interactive 3D animation showcase.</p>
+          <h3>Prestige Real Estate</h3>
+          <p>Property & Real Estate Agency Portal.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 11 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 11 - Event Coverage</h3>
-          <p>Wedding & event management page.</p>
+          <h3>Transport Agency</h3>
+          <p>Logistics, Shipping & Cargo Management Site.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://transport-agency-sooty.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 12 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 12 - Digital Studio</h3>
-          <p>Cyberpunk cyan aesthetic layout.</p>
+          <h3>Sky Wings Travel Agency</h3>
+          <p>Tour Packages & Travel Booking Web Layout.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 13 -->
       <div class="demo-card" data-tilt>
         <div>
-          <h3>Demo 13 - Custom Showcase</h3>
-          <p>Custom client portfolio template.</p>
+          <h3>Royal Ranthambore</h3>
+          <p>Resort Booking & Safari Tours Experience.</p>
         </div>
-        <a href="#" class="demo-link">Live Demo 🔗</a>
+        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
     </div>
   </section>
 
-  <!-- CONTACT SECTION -->
+  <!-- Contact Details -->
   <section id="contact">
     <div class="contact-box">
       <h2 style="color: #66fcf1; margin-bottom: 15px;">Contact Sohail Studio</h2>
@@ -340,7 +350,7 @@
     </div>
   </section>
 
-  <!-- FLOATING BUTTONS -->
+  <!-- Floating Call & WhatsApp Buttons -->
   <div class="floating-buttons">
     <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">
       <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -354,7 +364,7 @@
     &copy; 2026 Sohail Studio. All Rights Reserved.
   </footer>
 
-  <!-- THREE.JS JS -->
+  <!-- Three.js 3D Background Engine -->
   <script>
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
@@ -407,7 +417,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // 3D Tilt Effect
+    // 3D Tilt Motion for Grid Cards
     const cards = document.querySelectorAll('[data-tilt]');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {

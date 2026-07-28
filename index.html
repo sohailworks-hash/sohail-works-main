@@ -20,7 +20,6 @@
       overflow-x: hidden;
     }
 
-    /* Keyframe Animations Triggered Only On Hover */
     @keyframes hoverFloat {
       0% { transform: translateY(-4px); }
       100% { transform: translateY(-8px); }
@@ -31,7 +30,6 @@
       100% { transform: translateY(-8px); }
     }
 
-    /* 1. Navbar */
     header {
       display: flex;
       justify-content: space-between;
@@ -90,13 +88,11 @@
       color: #00f2fe;
     }
 
-    /* Base Buttons Transitions */
     .btn-hire, .btn-cta, .btn-open, .btn-wa-send, .float-btn {
       transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
       display: inline-block;
     }
 
-    /* Hire Me Button - Float on Hover */
     .btn-hire {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
@@ -113,7 +109,6 @@
       box-shadow: 0 8px 22px rgba(255, 0, 128, 0.7);
     }
 
-    /* 2. Hero Section */
     .hero {
       text-align: center;
       padding: 50px 20px 30px;
@@ -167,7 +162,6 @@
       font-size: 0.9rem;
     }
 
-    /* Primary CTA Float on Hover */
     .btn-primary {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
@@ -198,7 +192,6 @@
       margin-bottom: 35px;
     }
 
-    /* Stats Grid */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -238,7 +231,14 @@
       letter-spacing: 1px;
     }
 
-    /* Demo Cards */
+    .section-subtitle {
+      text-align: center;
+      color: #a0aec0;
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: -15px auto 30px;
+    }
+
     .demo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -266,6 +266,10 @@
       background-size: cover;
       background-position: center;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
     }
 
     .card-tag {
@@ -299,7 +303,6 @@
       margin-bottom: 14px;
     }
 
-    /* Open Website Button Float On Hover */
     .btn-open {
       display: block;
       text-align: center;
@@ -318,7 +321,42 @@
       box-shadow: 0 8px 22px rgba(255, 0, 128, 0.7);
     }
 
-    /* WhatsApp Form Button Float On Hover */
+    .contact-section {
+      max-width: 480px;
+      margin: 60px auto 0;
+      padding: 0 20px;
+    }
+
+    .contact-card {
+      background: rgba(22, 24, 56, 0.7);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .contact-card label {
+      display: block;
+      font-size: 0.8rem;
+      color: #a0aec0;
+      margin: 14px 0 6px;
+    }
+
+    .contact-card input,
+    .contact-card textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(11, 12, 27, 0.8);
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    .contact-card textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
     .btn-wa-send {
       width: 100%;
       padding: 12px;
@@ -329,7 +367,7 @@
       font-weight: 700;
       font-size: 0.95rem;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 18px;
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
 
@@ -338,7 +376,6 @@
       box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
     }
 
-    /* Floating Navigation Icons On Hover */
     .floating-nav {
       position: fixed;
       bottom: 20px;
@@ -373,9 +410,295 @@
     }
 
     .float-btn svg { width: 26px; height: 26px; fill: #fff; }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-top: 60px;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 1.7rem; }
+    }
   </style>
 </head>
 <body>
-  <!-- [Remaining HTML elements remain same] -->
+
+  <!-- 1. Navbar -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">S</div>
+      <span class="brand-title">Sohail Studio</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="https://wa.me/918955377472" class="btn-hire" target="_blank" rel="noopener noreferrer">Hire Me</a>
+  </header>
+
+  <!-- 2. Hero -->
+  <section class="hero" id="home">
+    <span class="hero-badge">✨ 13 Live Demo Websites</span>
+    <h1>Modern Websites That Help <span>Businesses Grow</span></h1>
+    <p class="hero-tagline">I design and build fast, modern websites for restaurants, hotels, clinics, gyms, schools and every kind of local business. Browse real demos below.</p>
+    <div class="hero-cta-group">
+      <a href="#portfolio" class="btn-cta btn-primary">View All Demos</a>
+      <a href="#contact" class="btn-cta btn-secondary">Send a Message</a>
+    </div>
+    <p class="social-proof">⭐⭐⭐⭐⭐ Trusted by 50+ businesses worldwide</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>13</h3>
+        <p>Live Demo Sites</p>
+      </div>
+      <div class="stat-card">
+        <h3>11+</h3>
+        <p>Industries Covered</p>
+      </div>
+      <div class="stat-card">
+        <h3>5★</h3>
+        <p>Client Rating</p>
+      </div>
+      <div class="stat-card">
+        <h3>100%</h3>
+        <p>Responsive</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Portfolio / Demo Grid -->
+  <h2 class="section-title" id="portfolio">My Demo Portfolio</h2>
+  <p class="section-subtitle">Every card below opens a fully built, live website. Click "Open Website" to explore any demo.</p>
+
+  <div class="demo-grid">
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #1e3a5f, #2d5a8c);">
+        🧾<span class="card-tag">Accounting</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>IQRA Associates</h3>
+          <p>Smart accounting &amp; GST filing website with service showcase and inquiry form.</p>
+        </div>
+        <a href="https://iqra-associates.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #3a1e0f, #7a3b12);">
+        🍽️<span class="card-tag">Restaurant</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Alveera Enterprises</h3>
+          <p>Luxury restaurant website with digital menu, gallery and table reservations.</p>
+        </div>
+        <a href="https://alveeraenterprises.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #2b1a3d, #5c2a6b);">
+        🏨<span class="card-tag">Hotel</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Royal Palace Hotel</h3>
+          <p>Royal luxury hotel website with room booking and amenities showcase.</p>
+        </div>
+        <a href="https://royal-palace-xi.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #0f3d3a, #1a6b63);">
+        💊<span class="card-tag">Pharmacy</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Fresh Mart Medical</h3>
+          <p>Clean, trustworthy pharmacy website with product categories and prescription upload.</p>
+        </div>
+        <a href="https://fresh-mart-medical.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #3d0f0f, #7a1a1a);">
+        💪<span class="card-tag">Gym</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Elite Gym</h3>
+          <p>Bold, high-energy fitness website with membership plans and trainer profiles.</p>
+        </div>
+        <a href="https://elite-gym-lemon.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #0f2d3d, #1a5a7a);">
+        🦷<span class="card-tag">Dental</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Smile Care Dental Clinic</h3>
+          <p>Calming dental clinic website with treatments, doctor profiles and booking form.</p>
+        </div>
+        <a href="https://smile-care-dental-clinic-iota.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #2d2410, #6b5a1a);">
+        🏢<span class="card-tag">Real Estate</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Prestige Real Estate</h3>
+          <p>Luxury property listing website with search, featured properties and agent profiles.</p>
+        </div>
+        <a href="https://prestige-real-estate-phi.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #0f1f3d, #1a3a7a);">
+        🎓<span class="card-tag">School</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Bright Future Public School</h3>
+          <p>Warm, trustworthy school website with academics, admissions and campus gallery.</p>
+        </div>
+        <a href="https://bright-future-school-tau.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #3d0f2b, #7a1a5c);">
+        💅<span class="card-tag">Salon &amp; Spa</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Glow Luxe Salon &amp; Spa</h3>
+          <p>Elegant salon website with service menu, packages and appointment booking.</p>
+        </div>
+        <a href="https://glow-lux-salon-spa.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #1a1a2d, #3d3d6b);">
+        ⚖️<span class="card-tag">Law Firm</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Sharma &amp; Associates</h3>
+          <p>Authoritative law firm website with practice areas and attorney profiles.</p>
+        </div>
+        <a href="https://sharma-associates-consultant.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #0f2d1f, #1a6b3a);">
+        🚚<span class="card-tag">Transport</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Transport Agency</h3>
+          <p>Reliable logistics &amp; transport website with fleet details and quote requests.</p>
+        </div>
+        <a href="https://transport-agency-sooty.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #0f2b3d, #1a6b8c);">
+        ✈️<span class="card-tag">Travel</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Sky Wings Travel Agency</h3>
+          <p>Vibrant travel agency website with tour packages and booking enquiry form.</p>
+        </div>
+        <a href="https://sky-wings-travel-agency.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+    <div class="demo-card">
+      <div class="card-banner" style="background: linear-gradient(135deg, #2d1a0f, #7a4a1a);">
+        🐯<span class="card-tag">Tourism</span>
+      </div>
+      <div class="card-content">
+        <div>
+          <h3>Royal Ranthambore</h3>
+          <p>Safari &amp; homestay website inspired by Ranthambore, with packages and gallery.</p>
+        </div>
+        <a href="https://royal-ranthambore.vercel.app/" class="btn-open" target="_blank" rel="noopener noreferrer">Open Website ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. Contact / WhatsApp Form -->
+  <h2 class="section-title" id="contact">Get Your Website Built</h2>
+  <p class="section-subtitle">Fill this in and it goes straight to my WhatsApp — no backend needed.</p>
+
+  <div class="contact-section">
+    <div class="contact-card">
+      <form id="waForm">
+        <label for="waName">Name</label>
+        <input type="text" id="waName" placeholder="Your full name" required>
+
+        <label for="waBusiness">Business Type</label>
+        <input type="text" id="waBusiness" placeholder="e.g. Restaurant, Gym, Clinic">
+
+        <label for="waMessage">Message</label>
+        <textarea id="waMessage" placeholder="Tell me about your project..."></textarea>
+
+        <button type="submit" class="btn-wa-send">Send on WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 Sohail Studio — Sawai Madhopur, Rajasthan, India</p>
+  </footer>
+
+  <!-- 5. Floating Call / WhatsApp Buttons -->
+  <div class="floating-nav">
+    <a href="tel:+918955377472" class="float-btn btn-call" aria-label="Call Sohail Studio">
+      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
+    </a>
+    <a href="https://wa.me/918955377472" class="float-btn btn-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Sohail Studio">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-3-.4-4.3-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3-.5-.5-.9-1.1-1.3-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.2 0-.3 0-.5-.1-.1-.5-1.3-.7-1.8-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9 0 1.1.8 2.2.9 2.4.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1 0-.1-.2-.2-.4-.3z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    document.getElementById('waForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('waName').value.trim();
+      var business = document.getElementById('waBusiness').value.trim();
+      var message = document.getElementById('waMessage').value.trim();
+
+      var text = 'Hi, I\'m ' + (name || 'a visitor') + '.';
+      if (business) text += ' My business type: ' + business + '.';
+      if (message) text += ' ' + message;
+
+      var url = 'https://wa.me/918955377472?text=' + encodeURIComponent(text);
+      window.open(url, '_blank');
+    });
+  </script>
+
 </body>
 </html>

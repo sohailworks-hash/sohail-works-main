@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio | Interactive 3D Portfolio & Showcase</title>
+  <title>Sohail Studio | Cyberpunk 3D Showcase</title>
   <style>
     /* Global Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
     }
 
     body {
-      background-color: #06080c;
+      background-color: #070514;
       color: #ffffff;
       overflow-x: hidden;
     }
@@ -30,19 +30,20 @@
       pointer-events: none;
     }
 
-    /* Header & Logo */
+    /* Cyberpunk Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 8%;
-      background: rgba(10, 15, 25, 0.85);
-      backdrop-filter: blur(15px);
+      background: rgba(13, 10, 32, 0.75);
+      backdrop-filter: blur(16px);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     .brand-container {
@@ -52,39 +53,44 @@
     }
 
     .brand-logo {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #66fcf1, #45a29e);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff007f, #00f3ff);
       display: flex;
       justify-content: center;
       align-items: center;
       font-weight: 900;
-      font-size: 1.4rem;
-      color: #0b0c10;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
-      border: 2px solid #ffffff;
+      font-size: 1.5rem;
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transform: rotate(-3deg);
     }
 
     .logo-text {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 800;
       letter-spacing: 2px;
-      background: linear-gradient(45deg, #ffffff, #66fcf1);
+      background: linear-gradient(90deg, #00f3ff, #ff007f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
     }
 
     nav a {
-      color: #c5c6c7;
+      color: #b8b3d8;
       text-decoration: none;
-      margin-left: 20px;
+      margin-left: 25px;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: all 0.3s;
+      position: relative;
     }
 
-    nav a:hover { color: #66fcf1; }
+    nav a:hover {
+      color: #00f3ff;
+      text-shadow: 0 0 10px #00f3ff;
+    }
 
     /* Hero Section */
     .hero {
@@ -99,26 +105,31 @@
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.8rem;
       margin-bottom: 15px;
-      background: linear-gradient(45deg, #ffffff, #66fcf1, #ff007f);
+      background: linear-gradient(90deg, #00f3ff, #b5179e, #ff007f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(181, 23, 158, 0.3);
     }
 
     .hero p {
       font-size: 1.2rem;
-      color: #c5c6c7;
+      color: #b8b3d8;
       max-width: 650px;
       margin-bottom: 25px;
     }
 
     section { padding: 40px 8%; text-align: center; }
+    
     .section-title { 
-      font-size: 2.4rem; 
+      font-size: 2.5rem; 
       margin-bottom: 40px; 
-      color: #66fcf1;
-      text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+      background: linear-gradient(90deg, #00f3ff, #ff007f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     /* 3D Demos Grid */
@@ -130,60 +141,72 @@
     }
 
     .demo-card {
-      background: rgba(20, 28, 40, 0.75);
-      border: 1px solid rgba(102, 252, 241, 0.25);
-      border-radius: 18px;
-      backdrop-filter: blur(10px);
+      background: rgba(20, 15, 45, 0.6);
+      border: 1px solid rgba(0, 243, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
       transform-style: preserve-3d;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       text-align: left;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .demo-card:hover { 
-      border-color: #66fcf1;
-      box-shadow: 0 0 25px rgba(102, 252, 241, 0.4);
+      border-color: #ff007f;
+      box-shadow: 0 0 30px rgba(255, 0, 127, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.2);
     }
 
-    /* Card Banner Header Image */
+    /* Card Banner Image */
     .card-banner {
       width: 100%;
-      height: 160px;
+      height: 165px;
       background-size: cover;
       background-position: center;
-      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      position: relative;
+    }
+
+    .card-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, transparent 40%, rgba(20, 15, 45, 0.9));
     }
 
     .card-content {
-      padding: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex-grow: 1;
+      position: relative;
+      z-index: 2;
     }
 
-    .demo-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.25rem; }
-    .demo-card p { color: #a0a5b5; font-size: 0.88rem; margin-bottom: 20px; line-height: 1.4; }
+    .demo-card h3 { color: #ffffff; margin-bottom: 8px; font-size: 1.3rem; letter-spacing: 0.5px; }
+    .demo-card p { color: #a49fc4; font-size: 0.88rem; margin-bottom: 22px; line-height: 1.5; }
 
     .demo-link {
       display: block;
-      padding: 10px 18px;
-      background: linear-gradient(45deg, #45a29e, #66fcf1);
-      color: #0b0c10;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, #7209b7, #f72585);
+      color: #ffffff;
       font-weight: bold;
-      border-radius: 25px;
+      border-radius: 30px;
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.3s ease;
       text-align: center;
+      box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
     }
 
     .demo-link:hover {
-      box-shadow: 0 0 20px rgba(102, 252, 241, 0.9);
-      transform: translateY(-2px);
+      background: linear-gradient(90deg, #f72585, #4cc9f0);
+      box-shadow: 0 0 25px rgba(76, 201, 240, 0.8);
+      transform: translateY(-3px);
     }
 
     /* Contact Details Box */
@@ -191,16 +214,17 @@
       max-width: 600px;
       margin: 0 auto;
       padding: 40px;
-      background: rgba(20, 28, 40, 0.8);
-      border-radius: 20px;
-      border: 1px solid rgba(102, 252, 241, 0.3);
-      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      background: rgba(20, 15, 45, 0.7);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 0, 127, 0.3);
+      box-shadow: 0 0 40px rgba(114, 9, 183, 0.3);
     }
 
-    .contact-info p { margin: 15px 0; color: #c5c6c7; font-size: 1.1rem; }
-    .contact-info a { color: #66fcf1; text-decoration: none; font-weight: bold; }
+    .contact-info p { margin: 15px 0; color: #b8b3d8; font-size: 1.1rem; }
+    .contact-info a { color: #00f3ff; text-decoration: none; font-weight: bold; }
+    .contact-info a:hover { text-shadow: 0 0 10px #00f3ff; }
 
-    /* FLOATING CONTACT BUTTONS WITH PULSE */
+    /* FLOATING CONTACT BUTTONS WITH NEON GLOW */
     .floating-buttons {
       position: fixed;
       bottom: 30px;
@@ -220,25 +244,26 @@
       align-items: center;
       color: #ffffff;
       text-decoration: none;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
     .float-btn svg { width: 28px; height: 28px; fill: white; }
-    .float-btn:hover { transform: scale(1.15) translateY(-3px); }
+    .float-btn:hover { transform: scale(1.18) translateY(-4px); }
     
     .call-btn { 
-      background: #45a29e; 
-      box-shadow: 0 0 15px rgba(69, 162, 158, 0.6);
+      background: #7209b7; 
+      box-shadow: 0 0 20px rgba(114, 9, 183, 0.8);
+      border: 1px solid rgba(255,255,255,0.3);
     }
     
     .wa-btn { 
       background: #25d366; 
-      box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.8);
+      border: 1px solid rgba(255,255,255,0.3);
     }
 
-    footer { text-align: center; padding: 25px; color: #666; font-size: 0.9rem; }
+    footer { text-align: center; padding: 30px; color: #726d97; font-size: 0.9rem; }
 
     @media(max-width: 768px) {
       .hero h1 { font-size: 2.3rem; }
@@ -262,7 +287,7 @@
     </div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#demos">Demo Sites</a>
+      <a href="#demos">Demos</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -273,9 +298,9 @@
     <p>3D Interactive Portfolio & Client Projects Showcase</p>
   </section>
 
-  <!-- 13 DEMO WEBSITES SHOWCASE WITH DYNAMIC BANNERS -->
+  <!-- 13 DEMO WEBSITES SHOWCASE WITH CYBERPUNK THEME -->
   <section id="demos">
-    <h2 class="section-title">Explore Live Demos (13 Websites)</h2>
+    <h2 class="section-title">Live Demos (13 Websites)</h2>
     <div class="demo-grid">
       
       <!-- Demo 1 -->
@@ -414,7 +439,7 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="contact-box">
-      <h2 style="color: #66fcf1; margin-bottom: 15px;">Contact Sohail Studio</h2>
+      <h2 style="color: #00f3ff; margin-bottom: 15px;">Contact Sohail Studio</h2>
       <div class="contact-info">
         <p>📞 Phone: <a href="tel:8955377472">8955377472</a></p>
         <p>✉️ Email: <a href="mailto:sohailkhan902314@gmail.com">sohailkhan902314@gmail.com</a></p>
@@ -422,7 +447,7 @@
     </div>
   </section>
 
-  <!-- Dynamic Floating Buttons -->
+  <!-- Floating Buttons -->
   <div class="floating-buttons">
     <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">
       <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -436,7 +461,7 @@
     &copy; 2026 Sohail Studio. All Rights Reserved.
   </footer>
 
-  <!-- Three.js Interactive Particle Background Logic -->
+  <!-- Three.js Cyberpunk Background Animation -->
   <script>
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
@@ -448,19 +473,21 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    const geometry = new THREE.IcosahedronGeometry(12, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x66fcf1, wireframe: true, transparent: true, opacity: 0.15 });
-    const sphere = new THREE.Mesh(geometry, material);
-    scene.add(sphere);
+    // Neon Wireframe Torus Node
+    const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const material = new THREE.MeshBasicMaterial({ color: 0xff007f, wireframe: true, transparent: true, opacity: 0.15 });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
 
+    // Floating Ambient Particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 900;
+    const particlesCount = 1000;
     const posArray = new Float32Array(particlesCount * 3);
 
-    for (let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 120; }
+    for (let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 130; }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({ size: 0.08, color: 0x45a29e });
+    const particlesMaterial = new THREE.PointsMaterial({ size: 0.09, color: 0x00f3ff });
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
 
@@ -473,12 +500,12 @@
 
     function animate() {
       requestAnimationFrame(animate);
-      sphere.rotation.x += 0.002;
-      sphere.rotation.y += 0.003;
-      particlesMesh.rotation.y = -mouseX * 0.3;
-      particlesMesh.rotation.x = -mouseY * 0.3;
-      sphere.position.x = mouseX * 3;
-      sphere.position.y = -mouseY * 3;
+      torusKnot.rotation.x += 0.003;
+      torusKnot.rotation.y += 0.005;
+      particlesMesh.rotation.y = -mouseX * 0.4;
+      particlesMesh.rotation.x = -mouseY * 0.4;
+      torusKnot.position.x = mouseX * 4;
+      torusKnot.position.y = -mouseY * 4;
       renderer.render(scene, camera);
     }
     animate();
@@ -489,14 +516,14 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Dynamic Card Tilt Effect
+    // Dynamic Tilt Motion
     const cards = document.querySelectorAll('[data-tilt]');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        card.style.transform = `perspective(1000px) rotateX(${(y / (rect.height / 2)) * -8}deg) rotateY(${(x / (rect.width / 2)) * 8}deg) translateZ(8px)`;
+        card.style.transform = `perspective(1000px) rotateX(${(y / (rect.height / 2)) * -8}deg) rotateY(${(x / (rect.width / 2)) * 8}deg) translateZ(10px)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';

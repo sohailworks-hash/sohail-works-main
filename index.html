@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio | Web Showcase</title>
+  <title>Sohail Studio | Web Portfolio</title>
   <style>
-    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
@@ -14,23 +13,25 @@
     }
 
     body {
-      background: #0f1026;
+      background: #0b0c1b;
       color: #ffffff;
-      padding-bottom: 80px;
+      padding-bottom: 90px;
+      overflow-x: hidden;
     }
 
-    /* Header */
+    /* Animated Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 5%;
-      background: rgba(22, 24, 56, 0.9);
-      backdrop-filter: blur(10px);
+      padding: 14px 6%;
+      background: rgba(15, 16, 38, 0.85);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
     }
 
     .brand {
@@ -40,35 +41,56 @@
     }
 
     .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       background: linear-gradient(135deg, #7928ca, #ff0080);
       display: flex;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
+      font-weight: 800;
       font-size: 1.3rem;
+      box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
     }
 
     .brand-title {
-      font-size: 1.3rem;
-      font-weight: 700;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
       background: linear-gradient(90deg, #00f2fe, #4facfe);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Hero Section */
+    /* Hero Section with Light Background Glow Animation */
     .hero {
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 35px 20px 15px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(121, 40, 202, 0.3) 0%, rgba(0,0,0,0) 70%);
+      z-index: -1;
+      animation: pulse 4s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: translateX(-50%) scale(0.9); }
+      100% { opacity: 0.8; transform: translateX(-50%) scale(1.2); }
     }
 
     .hero h1 {
       font-size: 2.2rem;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #00f2fe, #4facfe, #00c6ff);
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #00f2fe, #ff0080);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -79,53 +101,67 @@
     }
 
     .section-title {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       text-align: center;
-      margin: 30px 0 20px;
+      margin: 25px 0 20px;
       color: #00f2fe;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    /* Demo Grid - Mobile First */
+    /* Demo Cards Grid */
     .demo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
       padding: 0 5%;
     }
 
+    /* Mobile Smooth Animated Card */
     .demo-card {
-      background: #1a1c40;
-      border-radius: 16px;
+      background: rgba(22, 24, 56, 0.7);
+      border-radius: 18px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.15);
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     }
 
-    .demo-card:active {
-      transform: scale(0.98);
+    .demo-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255, 0, 128, 0.5);
+      box-shadow: 0 12px 25px rgba(255, 0, 128, 0.25);
     }
 
-    /* Niche Banner Image Styling */
+    /* Banner Image Container */
     .card-banner {
-      height: 150px;
+      height: 165px;
       background-size: cover;
       background-position: center;
       position: relative;
     }
 
+    .card-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 40%, rgba(22, 24, 56, 1));
+    }
+
     .card-tag {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
-      padding: 4px 10px;
+      top: 12px;
+      right: 12px;
+      background: rgba(11, 12, 27, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 5px 12px;
       border-radius: 20px;
       font-size: 0.75rem;
+      font-weight: 600;
       color: #00f2fe;
-      border: 1px solid rgba(0, 242, 254, 0.3);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      z-index: 2;
     }
 
     .card-content {
@@ -134,42 +170,53 @@
       flex-direction: column;
       flex-grow: 1;
       justify-content: space-between;
+      position: relative;
+      z-index: 2;
+      margin-top: -10px;
     }
 
     .card-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin-bottom: 6px;
       color: #ffffff;
     }
 
     .card-content p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: #a0aec0;
-      margin-bottom: 15px;
-      line-height: 1.4;
+      margin-bottom: 18px;
+      line-height: 1.45;
     }
 
+    /* Animated Glowing Button */
     .btn-open {
       display: block;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #ffffff;
       text-decoration: none;
-      font-weight: 600;
-      border-radius: 10px;
-      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
     }
 
-    /* Contact Section */
+    .btn-open:active {
+      transform: scale(0.97);
+    }
+
+    /* Contact Box */
     .contact-card {
       margin: 40px 5% 20px;
       padding: 25px;
-      background: #1a1c40;
-      border-radius: 16px;
+      background: rgba(22, 24, 56, 0.8);
+      border-radius: 20px;
       text-align: center;
-      border: 1px solid rgba(0, 242, 254, 0.2);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.1);
     }
 
     .contact-card h2 {
@@ -179,9 +226,9 @@
     }
 
     .contact-card p {
-      margin: 8px 0;
+      margin: 10px 0;
       color: #cbd5e0;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     .contact-card a {
@@ -190,7 +237,7 @@
       font-weight: bold;
     }
 
-    /* Mobile Floating Action Buttons */
+    /* Floating Navigation Buttons */
     .floating-nav {
       position: fixed;
       bottom: 20px;
@@ -208,8 +255,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
       text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .float-btn:active {
+      transform: scale(0.9);
     }
 
     .float-btn svg {
@@ -218,14 +270,21 @@
       fill: #ffffff;
     }
 
-    .btn-call { background: #6b46c1; }
-    .btn-wa { background: #25d366; }
+    .btn-call { 
+      background: #7928ca; 
+      box-shadow: 0 0 15px rgba(121, 40, 202, 0.6);
+    }
+    
+    .btn-wa { 
+      background: #25d366; 
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    }
 
     footer {
       text-align: center;
       padding: 20px;
       color: #718096;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
   </style>
 </head>
@@ -242,29 +301,30 @@
   <!-- Hero Section -->
   <div class="hero">
     <h1>Sohail Studio</h1>
-    <p>Client Websites & Demo Showcase</p>
+    <p>Premium Web Showcase & Client Projects</p>
   </div>
 
-  <!-- Demos Section -->
-  <h2 class="section-title">Our Live Websites (13)</h2>
+  <h2 class="section-title">Live Demos (13 Websites)</h2>
   
   <div class="demo-grid">
 
-    <!-- 1. Legal / Advisory -->
+    <!-- 1. Iqra Associates - Accounting/Pen & Paper Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Legal & Consultancy</span>
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
+        <span class="card-tag">Accounting & Legal</span>
       </div>
       <div class="card-content">
         <h3>Iqra Associates</h3>
-        <p>Professional Consultancy & Legal Advisory Services Platform.</p>
+        <p>Professional Consultancy, Tax & Legal Advisory Services Platform.</p>
         <a href="https://iqra-associates.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
       </div>
     </div>
 
-    <!-- 2. School / Education -->
+    <!-- 2. Bright Future School - Notebook & Pen Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80');">
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Education</span>
       </div>
       <div class="card-content">
@@ -274,9 +334,10 @@
       </div>
     </div>
 
-    <!-- 3. Beauty / Salon -->
+    <!-- 3. Glow Lux Salon - Salon Setup Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Salon & Spa</span>
       </div>
       <div class="card-content">
@@ -286,10 +347,11 @@
       </div>
     </div>
 
-    <!-- 4. Business Consultancy -->
+    <!-- 4. Sharma Associates - Financial / Pen Copy Desk -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Corporate</span>
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
+        <span class="card-tag">Financial Audit</span>
       </div>
       <div class="card-content">
         <h3>Sharma Associates</h3>
@@ -298,21 +360,23 @@
       </div>
     </div>
 
-    <!-- 5. Fitness / Gym -->
+    <!-- 5. Elite Gym - Gym Workout Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Gym & Fitness</span>
       </div>
       <div class="card-content">
         <h3>Elite Gym</h3>
-        <p>Fitness Club, Bodybuilding & Trainer Booking Template.</p>
+        <p>Fitness Club, Bodybuilding & Personal Trainer Booking.</p>
         <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
       </div>
     </div>
 
-    <!-- 6. Enterprise / Business -->
+    <!-- 6. Alveera Enterprises - Corporate Office Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80');">
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Enterprise</span>
       </div>
       <div class="card-content">
@@ -322,10 +386,11 @@
       </div>
     </div>
 
-    <!-- 7. Resort / Palace -->
+    <!-- 7. Royal Palace - Luxury Hotel Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Hotel & Resort</span>
+        <div class="card-overlay"></div>
+        <span class="card-tag">Luxury Hotel</span>
       </div>
       <div class="card-content">
         <h3>Royal Palace</h3>
@@ -334,9 +399,10 @@
       </div>
     </div>
 
-    <!-- 8. Pharmacy / Medical -->
+    <!-- 8. Fresh Mart Medical - Medical Store Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Pharmacy</span>
       </div>
       <div class="card-content">
@@ -346,9 +412,10 @@
       </div>
     </div>
 
-    <!-- 9. Dental Clinic -->
+    <!-- 9. Smile Care Dental - Dental Clinic Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Dental Care</span>
       </div>
       <div class="card-content">
@@ -358,22 +425,24 @@
       </div>
     </div>
 
-    <!-- 10. Real Estate -->
+    <!-- 10. Prestige Real Estate - Modern Villa Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80');">
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
         <span class="card-tag">Real Estate</span>
       </div>
       <div class="card-content">
         <h3>Prestige Real Estate</h3>
-        <p>Property Deals, Villa Sales & Commercial Real Estate Agency.</p>
+        <p>Property Deals, Luxury Villa Sales & Commercial Real Estate.</p>
         <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
       </div>
     </div>
 
-    <!-- 11. Transport / Logistics -->
+    <!-- 11. Transport Agency - Logistics Truck Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Transport</span>
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
+        <span class="card-tag">Logistics</span>
       </div>
       <div class="card-content">
         <h3>Transport Agency</h3>
@@ -382,10 +451,11 @@
       </div>
     </div>
 
-    <!-- 12. Travel Agency -->
+    <!-- 12. Sky Wings Travel - Flight/Airplane Banner -->
     <div class="demo-card">
       <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Travel & Tours</span>
+        <div class="card-overlay"></div>
+        <span class="card-tag">Travel & Flights</span>
       </div>
       <div class="card-content">
         <h3>Sky Wings Travel</h3>
@@ -394,10 +464,11 @@
       </div>
     </div>
 
-    <!-- 13. Wildlife / Safari -->
+    <!-- 13. Royal Ranthambore - Safari/Wildlife Tiger Banner -->
     <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Safari & Resort</span>
+      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=600&q=80');">
+        <div class="card-overlay"></div>
+        <span class="card-tag">Tiger Safari</span>
       </div>
       <div class="card-content">
         <h3>Royal Ranthambore</h3>
@@ -408,7 +479,7 @@
 
   </div>
 
-  <!-- Contact Box -->
+  <!-- Contact Section -->
   <div class="contact-card">
     <h2>Contact Sohail Studio</h2>
     <p>📞 Phone: <a href="tel:8955377472">8955377472</a></p>

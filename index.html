@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sohail Studio | 3D Interactive Portfolio</title>
   <style>
-    /* Reset & Base Styles */
+    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
@@ -27,20 +27,22 @@
       width: 100vw;
       height: 100vh;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* Layout & Sections */
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 8%;
-      background: rgba(11, 12, 16, 0.6);
-      backdrop-filter: blur(10px);
+      background: rgba(11, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 100;
+      border-bottom: 1px solid rgba(102, 252, 241, 0.1);
     }
 
     .logo {
@@ -59,37 +61,37 @@
       transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #66fcf1;
-    }
+    nav a:hover { color: #66fcf1; }
 
+    /* Hero Section */
     .hero {
-      height: 100vh;
+      height: 90vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      margin-top: 60px;
     }
 
     .hero h1 {
       font-size: 4rem;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       background: linear-gradient(45deg, #ffffff, #66fcf1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       color: #c5c6c7;
       max-width: 600px;
       margin-bottom: 30px;
     }
 
     .btn {
-      padding: 12px 30px;
+      padding: 12px 35px;
       background: #45a29e;
       color: #0b0c10;
       font-weight: bold;
@@ -105,19 +107,12 @@
       box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
     }
 
-    /* 3D Cards Section */
-    .services {
-      padding: 100px 8%;
-      text-align: center;
-    }
+    /* Common Section Styles */
+    section { padding: 80px 8%; text-align: center; }
+    .section-title { font-size: 2.5rem; margin-bottom: 40px; color: #66fcf1; }
 
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 50px;
-      color: #66fcf1;
-    }
-
-    .card-grid {
+    /* 3D Cards Grid (Services & Portfolio) */
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
@@ -127,107 +122,98 @@
     .card {
       background: rgba(31, 40, 51, 0.7);
       border: 1px solid rgba(102, 252, 241, 0.2);
-      padding: 40px 20px;
+      padding: 25px;
       border-radius: 15px;
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(8px);
       transform-style: preserve-3d;
       transition: transform 0.1s ease, border-color 0.3s ease;
       cursor: pointer;
+      text-align: left;
     }
 
-    .card:hover {
-      border-color: #66fcf1;
+    .card:hover { border-color: #66fcf1; }
+
+    /* Portfolio Specific Card Layout */
+    .portfolio-card {
+      padding: 0;
+      overflow: hidden;
+      border-radius: 15px;
     }
 
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: #fff;
+    .portfolio-img {
+      width: 100%;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
     }
 
-    .card p {
-      color: #c5c6c7;
-      font-size: 0.95rem;
-      line-height: 1.5;
+    .portfolio-info { padding: 20px; }
+    .portfolio-info h3 { color: #fff; margin-bottom: 8px; font-size: 1.3rem; }
+    .portfolio-info p { color: #c5c6c7; font-size: 0.9rem; }
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 10px;
+      background: rgba(102, 252, 241, 0.15);
+      color: #66fcf1;
+      font-size: 0.8rem;
+      border-radius: 12px;
+      font-weight: 600;
     }
 
-    /* Contact Details Section */
-    .contact {
-      padding: 80px 8%;
-      background: rgba(11, 12, 16, 0.8);
-      text-align: center;
-    }
-
+    /* Contact Details */
     .contact-box {
       max-width: 600px;
       margin: 0 auto;
       padding: 40px;
-      background: rgba(31, 40, 51, 0.5);
+      background: rgba(31, 40, 51, 0.6);
       border-radius: 20px;
       border: 1px solid rgba(102, 252, 241, 0.3);
     }
 
-    .contact-info {
-      margin-top: 20px;
-      font-size: 1.1rem;
-    }
+    .contact-info p { margin: 15px 0; color: #c5c6c7; font-size: 1.1rem; }
+    .contact-info a { color: #66fcf1; text-decoration: none; font-weight: bold; }
 
-    .contact-info p {
-      margin: 10px 0;
-      color: #c5c6c7;
-    }
-
-    .contact-info a {
-      color: #66fcf1;
-      text-decoration: none;
-    }
-
-    /* Floating Contact Quick Buttons */
+    /* FLOATING QUICK CONTACT BUTTONS (FIXED) */
     .floating-buttons {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px;
+      right: 30px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      z-index: 1000;
+      gap: 15px;
+      z-index: 9999;
     }
 
     .float-btn {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
+      color: #ffffff;
       text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .float-btn:hover {
-      transform: scale(1.1);
-    }
-
+    .float-btn svg { width: 26px; height: 26px; fill: white; }
+    .float-btn:hover { transform: scale(1.15) translateY(-3px); }
     .call-btn { background: #45a29e; }
     .wa-btn { background: #25d366; }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 0.9rem;
-    }
+    footer { text-align: center; padding: 25px; color: #666; font-size: 0.9rem; }
 
     @media(max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
       header { padding: 15px 5%; }
+      .floating-buttons { bottom: 20px; right: 20px; }
     }
   </style>
 
-  <!-- Three.js Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
@@ -240,6 +226,7 @@
     <div class="logo">Sohail Studio</div>
     <nav>
       <a href="#home">Home</a>
+      <a href="#portfolio">Portfolio</a>
       <a href="#services">Services</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -248,38 +235,73 @@
   <!-- Hero Section -->
   <section class="hero" id="home">
     <h1>Sohail Studio</h1>
-    <p>Capturing Cinematic Moments & Visuals in Interactive 3D</p>
-    <a href="#services" class="btn">Explore Work</a>
+    <p>Cinematography, 4K Wedding Films & 3D Visual Editing</p>
+    <a href="#portfolio" class="btn">View Portfolio</a>
   </section>
 
-  <!-- Services Section (3D Interactive Cards) -->
-  <section class="services" id="services">
-    <h2 class="section-title">Our Expertise</h2>
-    <div class="card-grid">
+  <!-- PORTFOLIO SHOWCASE SECTION -->
+  <section id="portfolio">
+    <h2 class="section-title">Featured Portfolio</h2>
+    <div class="grid">
       
-      <div class="card" data-tilt>
-        <h3>4K Wedding Films</h3>
-        <p>Cinematic wedding storytelling recorded in full 4K ultra-high clarity.</p>
+      <div class="card portfolio-card" data-tilt>
+        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="portfolio-info">
+          <h3>Royal Wedding Film</h3>
+          <p>Cinematic 4K coverage with drone angles and color grading.</p>
+          <span class="tag">4K Cinematography</span>
+        </div>
       </div>
 
-      <div class="card" data-tilt>
-        <h3>Drone Coverage</h3>
-        <p>High-altitude, smooth aerial perspectives for events and cinematography.</p>
+      <div class="card portfolio-card" data-tilt>
+        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="portfolio-info">
+          <h3>Hollywood Style Edits</h3>
+          <p>High-end short-form edits with custom VFX & sound design.</p>
+          <span class="tag">Hollywood Shorts</span>
+        </div>
       </div>
 
-      <div class="card" data-tilt>
-        <h3>3D Visual Editing</h3>
-        <p>High-tech VFX, 3D spatial compositing, and professional Hollywood-style edits.</p>
+      <div class="card portfolio-card" data-tilt>
+        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="portfolio-info">
+          <h3>Aerial Drone Shot</h3>
+          <p>Ultra-smooth aerial cinematography for outdoor events.</p>
+          <span class="tag">Drone Coverage</span>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
+  <!-- SERVICES SECTION -->
+  <section id="services">
+    <h2 class="section-title">What We Do</h2>
+    <div class="grid">
+      
+      <div class="card" data-tilt>
+        <h3 style="color: #66fcf1; margin-bottom: 10px;">4K Cinematography</h3>
+        <p style="color: #c5c6c7;">High-definition event coverage captured with professional cinema gear.</p>
+      </div>
+
+      <div class="card" data-tilt>
+        <h3 style="color: #66fcf1; margin-bottom: 10px;">3D Visual VFX</h3>
+        <p style="color: #c5c6c7;">Dynamic visual effects, spatial titles, and custom motion graphics.</p>
+      </div>
+
+      <div class="card" data-tilt>
+        <h3 style="color: #66fcf1; margin-bottom: 10px;">Shorts & Viral Edits</h3>
+        <p style="color: #c5c6c7;">Engaging short-form content designed to maximize reach and views.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
     <div class="contact-box">
-      <h2 style="color: #66fcf1; margin-bottom: 10px;">Get In Touch</h2>
-      <p style="color: #c5c6c7;">Ready to bring your visuals to life? Contact us today.</p>
+      <h2 style="color: #66fcf1; margin-bottom: 15px;">Contact Sohail Studio</h2>
+      <p style="color: #c5c6c7;">Bookings and collaborations are open. Reach out directly below!</p>
       
       <div class="contact-info">
         <p>📞 Phone: <a href="tel:8955377472">8955377472</a></p>
@@ -288,17 +310,23 @@
     </div>
   </section>
 
-  <!-- Floating Quick Actions -->
+  <!-- FLOATING QUICK ACTION BUTTONS -->
   <div class="floating-buttons">
-    <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">📞</a>
-    <a href="https://wa.me/918955377472" class="float-btn wa-btn" title="WhatsApp" target="_blank">💬</a>
+    <!-- Call Icon -->
+    <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+    <!-- WhatsApp Icon -->
+    <a href="https://wa.me/918955377472" class="float-btn wa-btn" title="WhatsApp" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 16.59c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 012.41 5.83c0 4.54-3.7 8.24-8.22 8.24z"/></svg>
+    </a>
   </div>
 
   <footer>
     &copy; 2026 Sohail Studio. All Rights Reserved.
   </footer>
 
-  <!-- 3D Three.js & Card Interactive Scripts -->
+  <!-- THREE.JS & 3D INTERACTION LOGIC -->
   <script>
     // --- THREE.JS BACKGROUND SCENE ---
     const canvas = document.getElementById('bg-canvas');
@@ -311,35 +339,32 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // Dynamic 3D Geometric Object (Icosahedron)
+    // 3D Wireframe Mesh
     const geometry = new THREE.IcosahedronGeometry(12, 1);
     const material = new THREE.MeshBasicMaterial({
       color: 0x66fcf1,
       wireframe: true,
       transparent: true,
-      opacity: 0.25
+      opacity: 0.2
     });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // Particle Stars Field
+    // Particles Stars Field
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 700;
+    const particlesCount = 800;
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 100;
+      posArray[i] = (Math.random() - 0.5) * 120;
     }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.08,
-      color: 0x45a29e
-    });
+    const particlesMaterial = new THREE.PointsMaterial({ size: 0.08, color: 0x45a29e });
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
 
-    // Mouse Interaction
+    // Mouse Parallax Effect
     let mouseX = 0;
     let mouseY = 0;
 
@@ -348,24 +373,22 @@
       mouseY = (e.clientY / window.innerHeight) - 0.5;
     });
 
-    // Animation Loop
     function animate() {
       requestAnimationFrame(animate);
 
-      sphere.rotation.x += 0.003;
-      sphere.rotation.y += 0.005;
+      sphere.rotation.x += 0.002;
+      sphere.rotation.y += 0.004;
 
-      particlesMesh.rotation.y = -mouseX * 0.5;
-      particlesMesh.rotation.x = -mouseY * 0.5;
+      particlesMesh.rotation.y = -mouseX * 0.4;
+      particlesMesh.rotation.x = -mouseY * 0.4;
 
-      sphere.position.x = mouseX * 5;
-      sphere.position.y = -mouseY * 5;
+      sphere.position.x = mouseX * 4;
+      sphere.position.y = -mouseY * 4;
 
       renderer.render(scene, camera);
     }
     animate();
 
-    // Window Resize Support
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
@@ -381,8 +404,8 @@
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
 
-        const tiltX = (y / (rect.height / 2)) * -12;
-        const tiltY = (x / (rect.width / 2)) * 12;
+        const tiltX = (y / (rect.height / 2)) * -10;
+        const tiltY = (x / (rect.width / 2)) * 10;
 
         card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(10px)`;
       });

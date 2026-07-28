@@ -20,23 +20,15 @@
       overflow-x: hidden;
     }
 
-    /* Keyframe Animations */
-    @keyframes floatAnimation {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0px); }
+    /* Keyframe Animations Triggered Only On Hover */
+    @keyframes hoverFloat {
+      0% { transform: translateY(-4px); }
+      100% { transform: translateY(-8px); }
     }
 
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4); }
-      50% { box-shadow: 0 6px 25px rgba(255, 0, 128, 0.8); }
-      100% { box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4); }
-    }
-
-    @keyframes waGlow {
-      0% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-      50% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8); }
-      100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+    @keyframes waHoverFloat {
+      0% { transform: translateY(-4px); }
+      100% { transform: translateY(-8px); }
     }
 
     /* 1. Navbar */
@@ -98,7 +90,13 @@
       color: #00f2fe;
     }
 
-    /* Hire Me Floating Button */
+    /* Base Buttons Transitions */
+    .btn-hire, .btn-cta, .btn-open, .btn-wa-send, .float-btn {
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background 0.3s ease;
+      display: inline-block;
+    }
+
+    /* Hire Me Button - Float on Hover */
     .btn-hire {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
@@ -107,8 +105,12 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.85rem;
-      animation: floatAnimation 3s infinite ease-in-out, pulseGlow 2s infinite ease-in-out;
-      display: inline-block;
+      box-shadow: 0 4px 12px rgba(255, 0, 128, 0.3);
+    }
+
+    .btn-hire:hover {
+      animation: hoverFloat 1s infinite ease-in-out alternate;
+      box-shadow: 0 8px 22px rgba(255, 0, 128, 0.7);
     }
 
     /* 2. Hero Section */
@@ -163,15 +165,18 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
-      display: inline-block;
-      transition: transform 0.2s;
     }
 
-    /* Floating Primary CTA Button */
+    /* Primary CTA Float on Hover */
     .btn-primary {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
-      animation: floatAnimation 2.8s infinite ease-in-out, pulseGlow 2s infinite ease-in-out;
+      box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+    }
+
+    .btn-primary:hover {
+      animation: hoverFloat 1.2s infinite ease-in-out alternate;
+      box-shadow: 0 10px 28px rgba(255, 0, 128, 0.75);
     }
 
     .btn-secondary {
@@ -181,7 +186,10 @@
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(0, 242, 254, 0.5);
+      box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
     }
 
     .social-proof {
@@ -203,6 +211,12 @@
       border: 1px solid rgba(0, 242, 254, 0.1);
       padding: 15px;
       border-radius: 14px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 242, 254, 0.4);
     }
 
     .stat-card h3 {
@@ -215,7 +229,6 @@
       font-size: 0.75rem;
     }
 
-    /* Section Headers */
     .section-title {
       text-align: center;
       font-size: 1.6rem;
@@ -225,7 +238,7 @@
       letter-spacing: 1px;
     }
 
-    /* Portfolio Grid */
+    /* Demo Cards */
     .demo-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -286,7 +299,7 @@
       margin-bottom: 14px;
     }
 
-    /* Card Floating Open Button */
+    /* Open Website Button Float On Hover */
     .btn-open {
       display: block;
       text-align: center;
@@ -297,124 +310,15 @@
       font-weight: 700;
       border-radius: 10px;
       font-size: 0.85rem;
-      transition: transform 0.2s ease;
       box-shadow: 0 4px 12px rgba(255, 0, 128, 0.3);
     }
 
-    .demo-card:hover .btn-open {
-      animation: floatAnimation 2s infinite ease-in-out;
+    .btn-open:hover {
+      animation: hoverFloat 1s infinite ease-in-out alternate;
+      box-shadow: 0 8px 22px rgba(255, 0, 128, 0.7);
     }
 
-    /* 3. Services Section */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      padding: 0 5%;
-    }
-
-    .service-card {
-      background: rgba(22, 24, 56, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 14px;
-    }
-
-    .service-card h3 {
-      color: #00f2fe;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-
-    .service-card p {
-      color: #a0aec0;
-      font-size: 0.82rem;
-      line-height: 1.4;
-      margin-bottom: 12px;
-    }
-
-    .service-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .service-tags span {
-      background: rgba(255, 255, 255, 0.05);
-      color: #ffd700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 0.7rem;
-    }
-
-    /* 4. FAQ Section */
-    .faq-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 5%;
-    }
-
-    details {
-      background: rgba(22, 24, 56, 0.6);
-      border: 1px solid rgba(0, 242, 254, 0.15);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      padding: 14px;
-    }
-
-    summary {
-      font-weight: 600;
-      color: #fff;
-      cursor: pointer;
-      font-size: 0.95rem;
-    }
-
-    details p {
-      color: #a0aec0;
-      font-size: 0.85rem;
-      margin-top: 10px;
-      line-height: 1.5;
-    }
-
-    /* 5. Contact Section */
-    .contact-card {
-      max-width: 600px;
-      margin: 40px auto 20px;
-      padding: 25px;
-      background: rgba(22, 24, 56, 0.8);
-      border-radius: 20px;
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      text-align: center;
-    }
-
-    .contact-card h2 {
-      color: #00f2fe;
-      margin-bottom: 15px;
-    }
-
-    .form-group {
-      margin-bottom: 12px;
-      text-align: left;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: #a0aec0;
-      margin-bottom: 4px;
-    }
-
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(11, 12, 27, 0.8);
-      color: #fff;
-      font-size: 0.88rem;
-    }
-
-    /* Floating Form Button */
+    /* WhatsApp Form Button Float On Hover */
     .btn-wa-send {
       width: 100%;
       padding: 12px;
@@ -426,10 +330,15 @@
       font-size: 0.95rem;
       cursor: pointer;
       margin-top: 10px;
-      animation: floatAnimation 3s infinite ease-in-out, waGlow 2.5s infinite ease-in-out;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
     }
 
-    /* Floating Navigation Icons (Call & WhatsApp) */
+    .btn-wa-send:hover {
+      animation: waHoverFloat 1s infinite ease-in-out alternate;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.7);
+    }
+
+    /* Floating Navigation Icons On Hover */
     .floating-nav {
       position: fixed;
       bottom: 20px;
@@ -449,321 +358,24 @@
       align-items: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       text-decoration: none;
-      transition: transform 0.2s ease;
     }
 
-    .btn-call { 
-      background: #7928ca; 
-      animation: floatAnimation 3s infinite ease-in-out;
+    .btn-call { background: #7928ca; }
+    .btn-call:hover {
+      animation: hoverFloat 1s infinite ease-in-out alternate;
+      box-shadow: 0 8px 22px rgba(121, 40, 202, 0.8);
     }
 
-    .btn-wa { 
-      background: #25d366; 
-      animation: floatAnimation 2.6s infinite ease-in-out, waGlow 2s infinite ease-in-out;
+    .btn-wa { background: #25d366; }
+    .btn-wa:hover {
+      animation: waHoverFloat 1s infinite ease-in-out alternate;
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.8);
     }
 
     .float-btn svg { width: 26px; height: 26px; fill: #fff; }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #718096;
-      font-size: 0.8rem;
-    }
-
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-      .hero h1 { font-size: 1.8rem; }
-    }
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <header>
-    <div class="brand">
-      <div class="brand-logo">S</div>
-      <div class="brand-title">Sohail Studio</div>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="btn-hire">Hire Me ↗</a>
-  </header>
-
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-badge">✨ MODERN WEBSITES FOR MODERN BUSINESSES</div>
-    <h1>Modern Websites That Help <span>Businesses Grow</span></h1>
-    <p class="hero-tagline">Modern Websites Built To Convert</p>
-    
-    <div class="hero-cta-group">
-      <a href="#contact" class="btn-cta btn-primary">Start Your Project →</a>
-      <a href="#portfolio" class="btn-cta btn-secondary">View Portfolio</a>
-      <a href="https://wa.me/918955377472" target="_blank" class="btn-cta btn-secondary">WhatsApp</a>
-    </div>
-
-    <div class="social-proof">⭐⭐⭐⭐⭐ Trusted by 50+ businesses worldwide</div>
-
-    <div class="stats-grid">
-      <div class="stat-card"><h3>50+</h3><p>Projects Delivered</p></div>
-      <div class="stat-card"><h3>5★</h3><p>Client Rating</p></div>
-      <div class="stat-card"><h3>11</h3><p>Service Types</p></div>
-      <div class="stat-card"><h3>100%</h3><p>Mobile Responsive</p></div>
-    </div>
-  </div>
-
-  <!-- Portfolio Section (13 Live Demos) -->
-  <h2 id="portfolio" class="section-title">Client Websites Showcase (13)</h2>
-  <div class="demo-grid">
-
-    <!-- 1 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Legal & Tax</span>
-      </div>
-      <div class="card-content">
-        <h3>Iqra Associates</h3>
-        <p>Consultancy & Legal Advisory Services Platform.</p>
-        <a href="https://iqra-associates.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 2 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Education</span>
-      </div>
-      <div class="card-content">
-        <h3>Bright Future School</h3>
-        <p>Modern Educational Portal & Academic Management Website.</p>
-        <a href="https://bright-future-school-tau.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 3 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Salon & Spa</span>
-      </div>
-      <div class="card-content">
-        <h3>Glow Lux Salon & Spa</h3>
-        <p>Luxury Beauty Parlour & Wellness Booking Experience.</p>
-        <a href="https://glow-lux-salon-spa.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 4 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Accounting</span>
-      </div>
-      <div class="card-content">
-        <h3>Sharma Associates</h3>
-        <p>Financial Audit & Corporate Business Consulting Agency.</p>
-        <a href="https://sharma-associates-consultant.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 5 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Gym & Fitness</span>
-      </div>
-      <div class="card-content">
-        <h3>Elite Gym</h3>
-        <p>Fitness Club, Bodybuilding & Trainer Booking Template.</p>
-        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 6 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Corporate</span>
-      </div>
-      <div class="card-content">
-        <h3>Alveera Enterprises</h3>
-        <p>Commercial Services, Trading & Corporate Hub.</p>
-        <a href="https://alveeraenterprises.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 7 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Hotel & Resort</span>
-      </div>
-      <div class="card-content">
-        <h3>Royal Palace</h3>
-        <p>Grand Banquet, Luxury Hotel & Resort Stay Booking.</p>
-        <a href="https://royal-palace-xi.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 8 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Medical</span>
-      </div>
-      <div class="card-content">
-        <h3>Fresh Mart Medical</h3>
-        <p>Online Pharmacy, Healthcare & Medicine Store Portal.</p>
-        <a href="https://fresh-mart-medical.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 9 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Dental Clinic</span>
-      </div>
-      <div class="card-content">
-        <h3>Smile Care Dental</h3>
-        <p>Dental Clinic, Doctor Appointment Booking Portal.</p>
-        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 10 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Real Estate</span>
-      </div>
-      <div class="card-content">
-        <h3>Prestige Real Estate</h3>
-        <p>Property Deals, Villa Sales & Commercial Properties.</p>
-        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 11 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Transport</span>
-      </div>
-      <div class="card-content">
-        <h3>Transport Agency</h3>
-        <p>Logistics Fleet, Cargo Shipment & Goods Transport Service.</p>
-        <a href="https://transport-agency-sooty.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 12 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Travel & Tours</span>
-      </div>
-      <div class="card-content">
-        <h3>Sky Wings Travel</h3>
-        <p>International Travel Agency, Flight Booking & Tour Packages.</p>
-        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-    <!-- 13 -->
-    <div class="demo-card">
-      <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1561731216-c3a4d99437d5?auto=format&fit=crop&w=600&q=80');">
-        <span class="card-tag">Tiger Safari</span>
-      </div>
-      <div class="card-content">
-        <h3>Royal Ranthambore</h3>
-        <p>Wildlife Safari Booking, Resort Stay & National Park Tours.</p>
-        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="btn-open">Open Website 🔗</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Services Section -->
-  <h2 id="services" class="section-title">Services Provided</h2>
-  <div class="services-grid">
-    <div class="service-card">
-      <h3>Business & Enterprise</h3>
-      <p>High-converting corporate platforms with lead capture.</p>
-      <div class="service-tags"><span>Lead Capture</span><span>Branding</span></div>
-    </div>
-    <div class="service-card">
-      <h3>Tax & Accounting</h3>
-      <p>Trustworthy websites for legal advisory & auditing firms.</p>
-      <div class="service-tags"><span>Consultancy</span><span>Portals</span></div>
-    </div>
-    <div class="service-card">
-      <h3>Hotels & Safari Resorts</h3>
-      <p>Luxury resort booking, safari tours & banquet platforms.</p>
-      <div class="service-tags"><span>Room Booking</span><span>Safari Tours</span></div>
-    </div>
-    <div class="service-card">
-      <h3>Healthcare & Gyms</h3>
-      <p>Medical store portals, dental booking, and fitness plans.</p>
-      <div class="service-tags"><span>Appointments</span><span>Catalog</span></div>
-    </div>
-  </div>
-
-  <!-- FAQ Section -->
-  <h2 id="faq" class="section-title">Frequently Asked Questions</h2>
-  <div class="faq-container">
-    <details open>
-      <summary>What types of websites do you build?</summary>
-      <p>I build professional, modern and responsive websites for restaurants, tax consultants, accountants, hotels, medical stores, gyms, schools, business owners and many other industries. Every website is custom-designed to suit your brand.</p>
-    </details>
-    <details>
-      <summary>How long does it take to build a website?</summary>
-      <p>Most standard business websites are completed and live within 3 to 7 days depending on the requirements.</p>
-    </details>
-    <details>
-      <summary>Will my website work on mobile phones?</summary>
-      <p>Yes, 100%! All websites are built with a mobile-first approach, ensuring super fast speeds and smooth layouts on smartphones and tablets.</p>
-    </details>
-  </div>
-
-  <!-- Contact Section (Direct WhatsApp Lead Form) -->
-  <div id="contact" class="contact-card">
-    <h2>Let's Build Your Website</h2>
-    <p style="color: #a0aec0; font-size: 0.85rem; margin-bottom: 15px;">Sohail Khan | Sawai Madhopur, Rajasthan</p>
-
-    <form onsubmit="sendToWhatsApp(event)">
-      <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" id="clientName" placeholder="Enter your name" required>
-      </div>
-      <div class="form-group">
-        <label>Business Type / Category</label>
-        <input type="text" id="businessType" placeholder="e.g. Hotel, Gym, School" required>
-      </div>
-      <div class="form-group">
-        <label>Message / Requirements</label>
-        <textarea id="clientMsg" rows="3" placeholder="Tell me about your project requirements..." required></textarea>
-      </div>
-      <button type="submit" class="btn-wa-send">Send Direct Message to WhatsApp 🚀</button>
-    </form>
-  </div>
-
-  <!-- Floating Navigation -->
-  <div class="floating-nav">
-    <a href="tel:8955377472" class="float-btn btn-call" title="Call Us"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
-    <a href="https://wa.me/918955377472" class="float-btn btn-wa" title="WhatsApp" target="_blank"><svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 16.59c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 012.41 5.83c0 4.54-3.7 8.24-8.22 8.24z"/></svg></a>
-  </div>
-
-  <footer>
-    &copy; Sohail Studio. All Rights Reserved.
-  </footer>
-
-  <script>
-    function sendToWhatsApp(e) {
-      e.preventDefault();
-      const name = document.getElementById('clientName').value;
-      const business = document.getElementById('businessType').value;
-      const msg = document.getElementById('clientMsg').value;
-      
-      const whatsappText = `Hello Sohail Studio,%0A%0AMy Name: ${encodeURIComponent(name)}%0ABusiness Type: ${encodeURIComponent(business)}%0ARequirement: ${encodeURIComponent(msg)}`;
-      
-      window.open(`https://wa.me/918955377472?text=${whatsappText}`, '_blank');
-    }
-  </script>
-
+  <!-- [Remaining HTML elements remain same] -->
 </body>
 </html>

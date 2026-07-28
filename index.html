@@ -20,6 +20,25 @@
       overflow-x: hidden;
     }
 
+    /* Keyframe Animations */
+    @keyframes floatAnimation {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4); }
+      50% { box-shadow: 0 6px 25px rgba(255, 0, 128, 0.8); }
+      100% { box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4); }
+    }
+
+    @keyframes waGlow {
+      0% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+      50% { box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8); }
+      100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+    }
+
     /* 1. Navbar */
     header {
       display: flex;
@@ -79,6 +98,7 @@
       color: #00f2fe;
     }
 
+    /* Hire Me Floating Button */
     .btn-hire {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
@@ -87,7 +107,8 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.85rem;
-      box-shadow: 0 4px 15px rgba(255, 0, 128, 0.3);
+      animation: floatAnimation 3s infinite ease-in-out, pulseGlow 2s infinite ease-in-out;
+      display: inline-block;
     }
 
     /* 2. Hero Section */
@@ -142,18 +163,25 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 0.9rem;
+      display: inline-block;
+      transition: transform 0.2s;
     }
 
+    /* Floating Primary CTA Button */
     .btn-primary {
       background: linear-gradient(90deg, #7928ca, #ff0080);
       color: #fff;
-      box-shadow: 0 4px 15px rgba(255, 0, 128, 0.4);
+      animation: floatAnimation 2.8s infinite ease-in-out, pulseGlow 2s infinite ease-in-out;
     }
 
     .btn-secondary {
       background: rgba(255, 255, 255, 0.08);
       color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
     }
 
     .social-proof {
@@ -212,12 +240,12 @@
       border: 1px solid rgba(0, 242, 254, 0.15);
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
     .demo-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 0, 128, 0.4);
+      transform: translateY(-5px);
+      border-color: rgba(255, 0, 128, 0.5);
     }
 
     .card-banner {
@@ -258,6 +286,7 @@
       margin-bottom: 14px;
     }
 
+    /* Card Floating Open Button */
     .btn-open {
       display: block;
       text-align: center;
@@ -268,6 +297,12 @@
       font-weight: 700;
       border-radius: 10px;
       font-size: 0.85rem;
+      transition: transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(255, 0, 128, 0.3);
+    }
+
+    .demo-card:hover .btn-open {
+      animation: floatAnimation 2s infinite ease-in-out;
     }
 
     /* 3. Services Section */
@@ -341,7 +376,7 @@
       line-height: 1.5;
     }
 
-    /* 5. WhatsApp Form Contact Section */
+    /* 5. Contact Section */
     .contact-card {
       max-width: 600px;
       margin: 40px auto 20px;
@@ -379,6 +414,7 @@
       font-size: 0.88rem;
     }
 
+    /* Floating Form Button */
     .btn-wa-send {
       width: 100%;
       padding: 12px;
@@ -390,9 +426,10 @@
       font-size: 0.95rem;
       cursor: pointer;
       margin-top: 10px;
+      animation: floatAnimation 3s infinite ease-in-out, waGlow 2.5s infinite ease-in-out;
     }
 
-    /* Floating Buttons */
+    /* Floating Navigation Icons (Call & WhatsApp) */
     .floating-nav {
       position: fixed;
       bottom: 20px;
@@ -404,19 +441,28 @@
     }
 
     .float-btn {
-      width: 50px;
-      height: 50px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       text-decoration: none;
+      transition: transform 0.2s ease;
     }
 
-    .float-btn svg { width: 24px; height: 24px; fill: #fff; }
-    .btn-call { background: #7928ca; }
-    .btn-wa { background: #25d366; }
+    .btn-call { 
+      background: #7928ca; 
+      animation: floatAnimation 3s infinite ease-in-out;
+    }
+
+    .btn-wa { 
+      background: #25d366; 
+      animation: floatAnimation 2.6s infinite ease-in-out, waGlow 2s infinite ease-in-out;
+    }
+
+    .float-btn svg { width: 26px; height: 26px; fill: #fff; }
 
     footer {
       text-align: center;

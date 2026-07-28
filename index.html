@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio | 3D Interactive Portfolio</title>
+  <title>Sohail Studio | 3D Interactive Portfolio & Demos</title>
   <style>
-    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
@@ -19,7 +18,6 @@
       overflow-x: hidden;
     }
 
-    /* 3D Canvas Background */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -30,7 +28,6 @@
       pointer-events: none;
     }
 
-    /* Header */
     header {
       display: flex;
       justify-content: space-between;
@@ -56,16 +53,15 @@
     nav a {
       color: #c5c6c7;
       text-decoration: none;
-      margin-left: 25px;
+      margin-left: 20px;
       font-weight: 600;
       transition: color 0.3s;
     }
 
     nav a:hover { color: #66fcf1; }
 
-    /* Hero Section */
     .hero {
-      height: 90vh;
+      height: 70vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -76,7 +72,7 @@
     }
 
     .hero h1 {
-      font-size: 4rem;
+      font-size: 3.8rem;
       margin-bottom: 15px;
       background: linear-gradient(45deg, #ffffff, #66fcf1);
       -webkit-background-clip: text;
@@ -84,42 +80,24 @@
     }
 
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #c5c6c7;
       max-width: 600px;
       margin-bottom: 30px;
     }
 
-    .btn {
-      padding: 12px 35px;
-      background: #45a29e;
-      color: #0b0c10;
-      font-weight: bold;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
-    }
+    section { padding: 60px 8%; text-align: center; }
+    .section-title { font-size: 2.2rem; margin-bottom: 40px; color: #66fcf1; }
 
-    .btn:hover {
-      background: #66fcf1;
-      transform: translateY(-3px);
-      box-shadow: 0 0 25px rgba(102, 252, 241, 0.8);
-    }
-
-    /* Common Section Styles */
-    section { padding: 80px 8%; text-align: center; }
-    .section-title { font-size: 2.5rem; margin-bottom: 40px; color: #66fcf1; }
-
-    /* 3D Cards Grid (Services & Portfolio) */
-    .grid {
+    /* 3D Demos Grid */
+    .demo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
       perspective: 1000px;
     }
 
-    .card {
+    .demo-card {
       background: rgba(31, 40, 51, 0.7);
       border: 1px solid rgba(102, 252, 241, 0.2);
       padding: 25px;
@@ -127,42 +105,36 @@
       backdrop-filter: blur(8px);
       transform-style: preserve-3d;
       transition: transform 0.1s ease, border-color 0.3s ease;
-      cursor: pointer;
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .card:hover { border-color: #66fcf1; }
+    .demo-card:hover { border-color: #66fcf1; }
 
-    /* Portfolio Specific Card Layout */
-    .portfolio-card {
-      padding: 0;
-      overflow: hidden;
-      border-radius: 15px;
-    }
+    .demo-card h3 { color: #fff; margin-bottom: 10px; font-size: 1.2rem; }
+    .demo-card p { color: #c5c6c7; font-size: 0.85rem; margin-bottom: 15px; }
 
-    .portfolio-img {
-      width: 100%;
-      height: 200px;
-      background-size: cover;
-      background-position: center;
-      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
-    }
-
-    .portfolio-info { padding: 20px; }
-    .portfolio-info h3 { color: #fff; margin-bottom: 8px; font-size: 1.3rem; }
-    .portfolio-info p { color: #c5c6c7; font-size: 0.9rem; }
-    .tag {
+    .demo-link {
       display: inline-block;
-      margin-top: 10px;
-      padding: 4px 10px;
-      background: rgba(102, 252, 241, 0.15);
-      color: #66fcf1;
-      font-size: 0.8rem;
-      border-radius: 12px;
-      font-weight: 600;
+      padding: 8px 18px;
+      background: #45a29e;
+      color: #0b0c10;
+      font-weight: bold;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      text-align: center;
     }
 
-    /* Contact Details */
+    .demo-link:hover {
+      background: #66fcf1;
+      box-shadow: 0 0 12px rgba(102, 252, 241, 0.6);
+    }
+
+    /* Contact Details Box */
     .contact-box {
       max-width: 600px;
       margin: 0 auto;
@@ -175,7 +147,7 @@
     .contact-info p { margin: 15px 0; color: #c5c6c7; font-size: 1.1rem; }
     .contact-info a { color: #66fcf1; text-decoration: none; font-weight: bold; }
 
-    /* FLOATING QUICK CONTACT BUTTONS (FIXED) */
+    /* Floating Quick Buttons */
     .floating-buttons {
       position: fixed;
       bottom: 30px;
@@ -197,7 +169,6 @@
       text-decoration: none;
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
       transition: all 0.3s ease;
-      cursor: pointer;
     }
 
     .float-btn svg { width: 26px; height: 26px; fill: white; }
@@ -210,7 +181,6 @@
     @media(max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
       header { padding: 15px 5%; }
-      .floating-buttons { bottom: 20px; right: 20px; }
     }
   </style>
 
@@ -218,80 +188,142 @@
 </head>
 <body>
 
-  <!-- 3D Canvas Background -->
   <canvas id="bg-canvas"></canvas>
 
-  <!-- Navigation -->
   <header>
     <div class="logo">Sohail Studio</div>
     <nav>
       <a href="#home">Home</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#services">Services</a>
+      <a href="#demos">Demo Sites</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <h1>Sohail Studio</h1>
-    <p>Cinematography, 4K Wedding Films & 3D Visual Editing</p>
-    <a href="#portfolio" class="btn">View Portfolio</a>
+    <p>3D Interactive Portfolio & Demo Websites Showcase</p>
   </section>
 
-  <!-- PORTFOLIO SHOWCASE SECTION -->
-  <section id="portfolio">
-    <h2 class="section-title">Featured Portfolio</h2>
-    <div class="grid">
+  <!-- 13 DEMO WEBSITES SECTION -->
+  <section id="demos">
+    <h2 class="section-title">Our 13 Demo Websites</h2>
+    <div class="demo-grid">
       
-      <div class="card portfolio-card" data-tilt>
-        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80');"></div>
-        <div class="portfolio-info">
-          <h3>Royal Wedding Film</h3>
-          <p>Cinematic 4K coverage with drone angles and color grading.</p>
-          <span class="tag">4K Cinematography</span>
+      <!-- Demo 1 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 01 - Portfolio</h3>
+          <p>3D Interactive agency design template.</p>
         </div>
+        <a href="https://sohail-studio2.vercel.app/" target="_blank" class="demo-link">Live Demo 🔗</a>
       </div>
 
-      <div class="card portfolio-card" data-tilt>
-        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80');"></div>
-        <div class="portfolio-info">
-          <h3>Hollywood Style Edits</h3>
-          <p>High-end short-form edits with custom VFX & sound design.</p>
-          <span class="tag">Hollywood Shorts</span>
+      <!-- Demo 2 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 02 - Cinematic</h3>
+          <p>Videography & wedding layout.</p>
         </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
       </div>
 
-      <div class="card portfolio-card" data-tilt>
-        <div class="portfolio-img" style="background-image: url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80');"></div>
-        <div class="portfolio-info">
-          <h3>Aerial Drone Shot</h3>
-          <p>Ultra-smooth aerial cinematography for outdoor events.</p>
-          <span class="tag">Drone Coverage</span>
+      <!-- Demo 3 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 03 - VFX Showcase</h3>
+          <p>Hollywood editing style portfolio.</p>
         </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
       </div>
 
-    </div>
-  </section>
-
-  <!-- SERVICES SECTION -->
-  <section id="services">
-    <h2 class="section-title">What We Do</h2>
-    <div class="grid">
-      
-      <div class="card" data-tilt>
-        <h3 style="color: #66fcf1; margin-bottom: 10px;">4K Cinematography</h3>
-        <p style="color: #c5c6c7;">High-definition event coverage captured with professional cinema gear.</p>
+      <!-- Demo 4 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 04 - Studio Concept</h3>
+          <p>Modern dark-theme studio landing page.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
       </div>
 
-      <div class="card" data-tilt>
-        <h3 style="color: #66fcf1; margin-bottom: 10px;">3D Visual VFX</h3>
-        <p style="color: #c5c6c7;">Dynamic visual effects, spatial titles, and custom motion graphics.</p>
+      <!-- Demo 5 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 05 - Photography</h3>
+          <p>High-resolution photo gallery showcase.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
       </div>
 
-      <div class="card" data-tilt>
-        <h3 style="color: #66fcf1; margin-bottom: 10px;">Shorts & Viral Edits</h3>
-        <p style="color: #c5c6c7;">Engaging short-form content designed to maximize reach and views.</p>
+      <!-- Demo 6 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 06 - Drone Coverage</h3>
+          <p>Aerial cinematography concept site.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 7 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 07 - Creative Agency</h3>
+          <p>Minimalist aesthetic agency layout.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 8 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 08 - Film Production</h3>
+          <p>Full-screen video background template.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 9 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 09 - Personal Brand</h3>
+          <p>Content creator & influencer portfolio.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 10 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 10 - Motion Graphics</h3>
+          <p>Interactive 3D animation showcase.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 11 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 11 - Event Coverage</h3>
+          <p>Wedding & event management page.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 12 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 12 - Digital Studio</h3>
+          <p>Cyberpunk cyan aesthetic layout.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
+      </div>
+
+      <!-- Demo 13 -->
+      <div class="demo-card" data-tilt>
+        <div>
+          <h3>Demo 13 - Custom Showcase</h3>
+          <p>Custom client portfolio template.</p>
+        </div>
+        <a href="#" class="demo-link">Live Demo 🔗</a>
       </div>
 
     </div>
@@ -301,8 +333,6 @@
   <section id="contact">
     <div class="contact-box">
       <h2 style="color: #66fcf1; margin-bottom: 15px;">Contact Sohail Studio</h2>
-      <p style="color: #c5c6c7;">Bookings and collaborations are open. Reach out directly below!</p>
-      
       <div class="contact-info">
         <p>📞 Phone: <a href="tel:8955377472">8955377472</a></p>
         <p>✉️ Email: <a href="mailto:sohailkhan902314@gmail.com">sohailkhan902314@gmail.com</a></p>
@@ -310,13 +340,11 @@
     </div>
   </section>
 
-  <!-- FLOATING QUICK ACTION BUTTONS -->
+  <!-- FLOATING BUTTONS -->
   <div class="floating-buttons">
-    <!-- Call Icon -->
     <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">
       <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
     </a>
-    <!-- WhatsApp Icon -->
     <a href="https://wa.me/918955377472" class="float-btn wa-btn" title="WhatsApp" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 16.59c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.188 8.188 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 012.41 5.83c0 4.54-3.7 8.24-8.22 8.24z"/></svg>
     </a>
@@ -326,9 +354,8 @@
     &copy; 2026 Sohail Studio. All Rights Reserved.
   </footer>
 
-  <!-- THREE.JS & 3D INTERACTION LOGIC -->
+  <!-- THREE.JS JS -->
   <script>
-    // --- THREE.JS BACKGROUND SCENE ---
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
 
@@ -339,34 +366,23 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // 3D Wireframe Mesh
     const geometry = new THREE.IcosahedronGeometry(12, 1);
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x66fcf1,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.2
-    });
+    const material = new THREE.MeshBasicMaterial({ color: 0x66fcf1, wireframe: true, transparent: true, opacity: 0.2 });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
-    // Particles Stars Field
     const particlesGeometry = new THREE.BufferGeometry();
     const particlesCount = 800;
     const posArray = new Float32Array(particlesCount * 3);
 
-    for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 120;
-    }
+    for (let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 120; }
 
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
     const particlesMaterial = new THREE.PointsMaterial({ size: 0.08, color: 0x45a29e });
     const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particlesMesh);
 
-    // Mouse Parallax Effect
-    let mouseX = 0;
-    let mouseY = 0;
+    let mouseX = 0, mouseY = 0;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = (e.clientX / window.innerWidth) - 0.5;
@@ -375,16 +391,12 @@
 
     function animate() {
       requestAnimationFrame(animate);
-
       sphere.rotation.x += 0.002;
       sphere.rotation.y += 0.004;
-
       particlesMesh.rotation.y = -mouseX * 0.4;
       particlesMesh.rotation.x = -mouseY * 0.4;
-
       sphere.position.x = mouseX * 4;
       sphere.position.y = -mouseY * 4;
-
       renderer.render(scene, camera);
     }
     animate();
@@ -395,21 +407,15 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // --- 3D TILT EFFECT FOR CARDS ---
+    // 3D Tilt Effect
     const cards = document.querySelectorAll('[data-tilt]');
-
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-
-        const tiltX = (y / (rect.height / 2)) * -10;
-        const tiltY = (x / (rect.width / 2)) * 10;
-
-        card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(10px)`;
+        card.style.transform = `perspective(1000px) rotateX(${(y / (rect.height / 2)) * -10}deg) rotateY(${(x / (rect.width / 2)) * 10}deg) translateZ(10px)`;
       });
-
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
       });

@@ -1,970 +1,885 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio — Ultra Premium Websites</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOHAIL STUDIO | 3D Creative Photography & Cinematography</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Three.js Library for 3D WebGL Canvas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
-
-    :root {
-      --bg: #05040a;
-      --card-bg: rgba(18, 14, 36, 0.65);
-      --border: rgba(168, 85, 247, 0.15);
-      --accent: #a855f7;
-      --accent-glow: rgba(168, 85, 247, 0.35);
-      --gradient: linear-gradient(135deg, #a855f7, #6366f1);
-      --gradient-fire: linear-gradient(135deg, #ff4694, #a855f7, #6366f1);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      scroll-behavior: smooth;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
-    
-    /* Background with Grid Pattern & Mesh Glow */
-    body { 
-      background-color: var(--bg); 
-      color: #ffffff; 
-      overflow-x: hidden; 
-      line-height: 1.6;
-      background-image: 
-        linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-        radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
-        radial-gradient(circle at 85% 60%, rgba(99, 102, 241, 0.15) 0%, transparent 45%);
-      background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
-      background-attachment: fixed;
+    body {
+      background-color: #050811;
+      color: #f1f5f9;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    a { text-decoration: none; color: inherit; }
-
-    /* Floating Keyframe Animations */
-    @keyframes floatAnimation {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-      100% { transform: translateY(0px); }
+    /* 3D WebGL Canvas Background */
+    #webgl-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
     }
 
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
-      50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.45); }
+    /* Content Wrapper */
+    .content-layer {
+      position: relative;
+      z-index: 10;
     }
 
-    @keyframes logoPulse {
-      0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.6), 0 0 30px rgba(99, 102, 241, 0.3); }
-      50% { box-shadow: 0 0 25px rgba(255, 70, 148, 0.8), 0 0 45px rgba(168, 85, 247, 0.6); }
-    }
-
-    /* GLOBAL FLOATING BUTTON EFFECT FOR ALL BUTTONS */
-    .btn-main, .btn-outline, .hire-btn, .portfolio-link, .order-btn, .contact-btn, .nav-phone, .hero-badge, .stat-box {
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    }
-
-    .btn-main:hover, .btn-outline:hover, .hire-btn:hover, .portfolio-link:hover, .order-btn:hover, .contact-btn:hover {
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 12px 25px rgba(168, 85, 247, 0.4);
-    }
-
-    /* Header Nav Bar */
+    /* Header Navigation */
     header {
-      padding: 15px 20px;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
     }
 
-    .header-pill {
+    .nav-container {
       max-width: 1200px;
       margin: 0 auto;
-      background: rgba(20, 16, 40, 0.85);
-      border: 1px solid var(--border);
-      padding: 10px 24px;
-      border-radius: 40px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      gap: 15px;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    /* TADAKTA BHADAKTA LOGO DESIGN */
-    .brand-logo { 
-      font-weight: 900; 
-      font-size: 1.35rem; 
-      display: flex; 
-      align-items: center; 
-      gap: 12px; 
-      letter-spacing: -0.5px;
-      white-space: nowrap;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .brand-logo .logo-text-main {
-      color: #ffffff;
-      font-weight: 800;
-    }
-
-    .brand-logo .logo-text-gradient { 
-      background: linear-gradient(135deg, #ff4694 0%, #a855f7 50%, #6366f1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-      text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-    }
-
-    .logo-box {
-      width: 40px; 
-      height: 40px;
-      background: var(--gradient-fire);
+    .logo-badge {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #06b6d4, #3b82f6);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+      transform: rotate(-5deg);
+      transition: transform 0.3s;
+    }
+
+    .logo:hover .logo-badge {
+      transform: rotate(0deg) scale(1.05);
+    }
+
+    .logo-text h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
       color: #ffffff;
-      font-size: 1.15rem;
-      position: relative;
-      animation: logoPulse 3s infinite ease-in-out;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      letter-spacing: 1px;
     }
 
-    .brand-logo:hover .logo-box {
-      transform: rotate(15deg) scale(1.12);
-      box-shadow: 0 0 30px rgba(255, 70, 148, 0.9), 0 0 50px rgba(168, 85, 247, 0.8);
+    .logo-text p {
+      font-size: 10px;
+      color: #06b6d4;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
     }
 
-    .logo-box::after {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 14px;
-      background: var(--gradient-fire);
-      z-index: -1;
-      opacity: 0.7;
-      filter: blur(8px);
-    }
-
-    /* Navigation Links */
     .nav-links {
       display: flex;
+      gap: 30px;
       align-items: center;
-      gap: 22px;
-      list-style: none;
     }
 
     .nav-links a {
+      text-decoration: none;
       color: #cbd5e1;
-      font-size: 0.9rem;
       font-weight: 600;
-      transition: all 0.3s ease;
-      display: inline-block;
+      font-size: 15px;
+      transition: all 0.3s;
     }
 
     .nav-links a:hover {
-      color: #a855f7;
+      color: #38bdf8;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-nav-call {
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      color: #fff !important;
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav-call:hover {
       transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(6, 182, 212, 0.7);
     }
 
-    .nav-right {
+    /* Mobile Menu Icon */
+    .mobile-btn {
+      display: none;
+      font-size: 24px;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Hero 3D Section */
+    .hero {
+      min-height: 90vh;
       display: flex;
       align-items: center;
-      gap: 18px;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
     }
 
-    .nav-phone {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #e2e8f0;
-      font-size: 0.88rem;
-      font-weight: 700;
-      white-space: nowrap;
-      padding: 6px 12px;
-      border-radius: 20px;
-    }
-
-    .nav-phone:hover {
-      color: #a855f7;
-      background: rgba(168, 85, 247, 0.1);
-      transform: translateY(-3px);
-    }
-
-    .nav-phone i {
-      color: #a855f7;
-    }
-
-    .hire-btn {
-      background: var(--gradient-fire);
-      color: white;
-      padding: 9px 20px;
-      border-radius: 25px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-
-    /* Main Container */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    /* Hero Section */
-    .hero { text-align: center; padding: 70px 0 40px; position: relative; }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 30%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 350px;
-      height: 350px;
-      background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(99, 102, 241, 0) 70%);
-      border-radius: 50%;
-      z-index: -1;
-      filter: blur(50px);
-      pointer-events: none;
+    .hero-glass-card {
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 30px;
+      padding: 60px 40px;
+      max-width: 900px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.05);
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 18px;
-      background: rgba(168, 85, 247, 0.1);
-      border: 1px solid rgba(168, 85, 247, 0.3);
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: #38bdf8;
+      padding: 8px 20px;
       border-radius: 30px;
-      color: #d8b4fe;
-      font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
       margin-bottom: 25px;
-      backdrop-filter: blur(8px);
-      animation: floatAnimation 4s infinite ease-in-out;
     }
 
-    .hero h1 { 
-      font-size: 3rem; 
-      font-weight: 800; 
-      line-height: 1.2; 
-      margin-bottom: 20px; 
-      letter-spacing: -1px;
-    }
-
-    .hero h1 span { 
-      background: linear-gradient(135deg, #e9d5ff 0%, #a855f7 50%, #6366f1 100%); 
-      -webkit-background-clip: text; 
-      -webkit-text-fill-color: transparent; 
-    }
-
-    .hero p { 
-      font-size: 1.1rem; 
-      color: #94a3b8; 
-      max-width: 620px; 
-      margin: 0 auto 35px; 
-      font-weight: 400;
-    }
-
-    .hero-btns { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-
-    .btn-main { 
-      background: var(--gradient-fire); 
-      color: white; 
-      padding: 14px 32px; 
-      border-radius: 30px; 
-      font-weight: 700; 
-      box-shadow: 0 0 25px var(--accent-glow);
-    }
-
-    .btn-outline { 
-      border: 1px solid var(--border); 
-      background: rgba(255, 255, 255, 0.03);
-      padding: 14px 32px; 
-      border-radius: 30px; 
-      font-weight: 600; 
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.3); }
-
-    /* Quick Hero Stats Strip */
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-top: 45px;
-      flex-wrap: wrap;
-    }
-
-    .stat-box {
-      background: rgba(20, 16, 40, 0.6);
-      border: 1px solid var(--border);
-      padding: 12px 24px;
-      border-radius: 16px;
-      backdrop-filter: blur(10px);
-      text-align: center;
-    }
-
-    .stat-box:hover {
-      transform: translateY(-4px);
-      border-color: rgba(168, 85, 247, 0.4);
-    }
-
-    .stat-box h4 {
-      font-size: 1.25rem;
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 56px;
       font-weight: 800;
-      color: #e9d5ff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .stat-box p {
-      font-size: 0.78rem;
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 18px;
       color: #94a3b8;
-      margin: 0;
+      max-width: 680px;
+      margin: 0 auto 35px;
+      line-height: 1.7;
     }
 
-    /* Section Header */
-    .section-title { text-align: center; margin: 70px 0 35px; scroll-margin-top: 100px; }
-    .section-title h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
-    .section-title p { color: #94a3b8; font-size: 1rem; margin-top: 6px; }
-
-    /* Services Grid */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
-    .service-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      padding: 30px 25px;
-      border-radius: 24px;
-      backdrop-filter: blur(12px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(168, 85, 247, 0.4);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(168, 85, 247, 0.15);
-    }
-
-    .service-card i { font-size: 2.2rem; color: #c084fc; margin-bottom: 18px; display: inline-block; }
-    .service-card h3 { font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
-    .service-card p { color: #94a3b8; font-size: 0.92rem; }
-
-    /* Portfolio Grid System */
-    .portfolio-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); 
-      gap: 25px; 
-    }
-    
-    .portfolio-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      backdrop-filter: blur(14px);
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    .hero-btns {
       display: flex;
-      flex-direction: column;
-    }
-
-    .portfolio-card:hover { 
-      transform: translateY(-8px); 
-      border-color: rgba(168, 85, 247, 0.5);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(168, 85, 247, 0.2);
-    }
-
-    .portfolio-img-box {
-      width: 100%;
-      height: 185px;
-      position: relative;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .portfolio-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.5s ease;
-    }
-
-    .portfolio-card:hover .portfolio-img-box img {
-      transform: scale(1.08);
-    }
-
-    .portfolio-content {
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .portfolio-tag {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(168, 85, 247, 0.15);
-      border: 1px solid rgba(168, 85, 247, 0.3);
-      color: #d8b4fe;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-
-    .portfolio-card h3 { font-size: 1.3rem; margin-bottom: 8px; font-weight: 700; }
-    .portfolio-card p { color: #94a3b8; font-size: 0.88rem; margin-bottom: 20px; flex-grow: 1; }
-    
-    .portfolio-link { 
-      color: #ffffff; 
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 10px 18px;
-      border-radius: 14px;
-      font-weight: 700; 
-      font-size: 0.88rem; 
-      display: inline-flex; 
-      align-items: center; 
+      gap: 16px;
       justify-content: center;
-      gap: 8px; 
-    }
-
-    .portfolio-card:hover .portfolio-link {
-      background: var(--gradient-fire);
-      border-color: transparent;
-      box-shadow: 0 0 15px var(--accent-glow);
-    }
-
-    /* Pricing Section */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
-    .price-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 35px 26px;
-      backdrop-filter: blur(14px);
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .price-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(168, 85, 247, 0.4);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(168, 85, 247, 0.15);
-    }
-
-    .price-card.featured {
-      border-color: #a855f7;
-      animation: pulseGlow 3s infinite ease-in-out;
-      background: rgba(25, 18, 48, 0.75);
-    }
-
-    .price-card.featured::before {
-      content: 'MOST POPULAR';
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--gradient-fire);
-      padding: 4px 16px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-
-    .card-title { font-size: 1.35rem; font-weight: 700; color: #f3e8ff; }
-    
-    .price-amount {
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin: 16px 0;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      line-height: 1.1;
-      letter-spacing: normal;
-    }
-
-    .price-amount .currency {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-weight: 700;
-      color: #ffffff;
-      padding-right: 2px;
-    }
-
-    .features-list { list-style: none; margin: 22px 0 28px; }
-    .features-list li { margin-bottom: 14px; display: flex; align-items: center; gap: 12px; font-size: 0.93rem; color: #cbd5e1; }
-    .features-list li i { color: #c084fc; font-size: 0.95rem; }
-
-    .order-btn {
-      width: 100%;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 14px;
-      color: white;
-      font-weight: 700;
-      text-align: center;
-      display: block;
-    }
-
-    .order-btn:hover { background: var(--gradient-fire); border-color: transparent; box-shadow: 0 0 20px var(--accent-glow); }
-
-    /* Contact Section */
-    .contact-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 40px 30px;
-      text-align: center;
-      backdrop-filter: blur(14px);
-      max-width: 800px;
-      margin: 0 auto 50px;
-    }
-
-    .contact-card h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
-    .contact-card p { color: #94a3b8; margin-bottom: 25px; }
-
-    .contact-actions {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
     }
 
-    .contact-btn {
-      padding: 12px 26px;
-      border-radius: 25px;
+    .btn-wa-hero {
+      background: #22c55e;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 16px;
       font-weight: 700;
-      display: flex;
+      text-decoration: none;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+      transition: all 0.3s;
     }
 
-    .contact-wa { background: #22c55e; color: white; box-shadow: 0 0 20px rgba(34, 197, 94, 0.3); }
-    .contact-call { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); color: white; }
-
-    /* Footer */
-    footer { 
-      text-align: center; 
-      padding: 40px 20px 80px; 
-      color: #64748b; 
-      font-size: 0.9rem; 
-      border-top: 1px solid rgba(255, 255, 255, 0.06); 
-      margin-top: 70px; 
+    .btn-wa-hero:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(34, 197, 94, 0.6);
     }
 
-    /* Fixed Floating Actions */
-    .fixed-actions {
-      position: fixed;
-      bottom: 25px; 
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 99999;
+    .btn-secondary-hero {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s;
     }
 
-    .float-btn {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
+    .btn-secondary-hero:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-3px);
+    }
+
+    /* 3D Interactive Feature Cards */
+    .services-section {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 38px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-header p {
+      color: #64748b;
+      font-size: 17px;
+      margin-top: 10px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      perspective: 1000px;
+    }
+
+    .tilt-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 35px;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease, border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .tilt-card:hover {
+      border-color: rgba(6, 182, 212, 0.5);
+      box-shadow: 0 20px 40px rgba(6, 182, 212, 0.2);
+    }
+
+    .card-icon-3d {
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(59, 130, 246, 0.2));
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      color: white;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      transition: all 0.3s ease;
-      animation: floatAnimation 3s infinite ease-in-out;
+      font-size: 28px;
+      color: #38bdf8;
+      margin-bottom: 25px;
+      transform: translateZ(30px);
     }
 
-    .float-btn:hover { transform: scale(1.15) translateY(-5px) !important; }
-    .float-phone { background: #8b5cf6; box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
-    .float-wa { background: #22c55e; box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); animation-delay: 1.5s; }
-
-    @media (max-width: 900px) {
-      .nav-links { display: none; }
+    .tilt-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 12px;
+      transform: translateZ(20px);
     }
 
+    .tilt-card p {
+      color: #94a3b8;
+      font-size: 15px;
+      line-height: 1.6;
+      transform: translateZ(10px);
+    }
+
+    /* Floating Lights in Card */
+    .card-glow {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%);
+      top: -50px;
+      right: -50px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Portfolio Section */
+    .portfolio-section {
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .portfolio-card {
+      height: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: scale(1.03) translateY(-5px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.6);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(5, 8, 17, 0.95), rgba(5, 8, 17, 0.1));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 25px;
+      transition: background 0.3s;
+    }
+
+    .portfolio-overlay h4 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .portfolio-overlay p {
+      font-size: 13px;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 90px 20px;
+      margin-top: 100px;
+    }
+
+    .contact-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 50px;
+    }
+
+    .contact-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .contact-info p {
+      color: #94a3b8;
+      margin-bottom: 35px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .contact-icon-box {
+      width: 50px;
+      height: 50px;
+      background: rgba(6, 182, 212, 0.15);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #38bdf8;
+      font-size: 20px;
+    }
+
+    .contact-form {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 35px;
+      border-radius: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #06b6d4;
+    }
+
+    .btn-submit-3d {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-submit-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(6, 182, 212, 0.6);
+    }
+
+    /* Footer */
+    footer {
+      background: #020617;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+      color: #64748b;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Media Queries */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.2rem; }
-      .nav-phone span { display: none; }
+      .hero h1 { font-size: 36px; }
+      .nav-links { display: none; }
+      .mobile-btn { display: block; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header Navigation Section -->
-  <header>
-    <div class="header-pill">
-      
-      <!-- Tadakta Bhadakta Animated Logo -->
-      <a href="#" class="brand-logo">
-        <div class="logo-box">
-          <i class="fas fa-code-merge"></i>
+  <!-- 3D WebGL Canvas Background -->
+  <canvas id="webgl-bg"></canvas>
+
+  <div class="content-layer">
+
+    <!-- Header Navigation -->
+    <header>
+      <div class="nav-container">
+        <a href="#home" class="logo">
+          <div class="logo-badge">
+            <i class="fa-solid fa-camera-retro"></i>
+          </div>
+          <div class="logo-text">
+            <h1>SOHAIL STUDIO</h1>
+            <p>Cinematic & 3D Visuals</p>
+          </div>
+        </a>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+          <a href="tel:+919876543210" class="btn-nav-call"><i class="fa-solid fa-phone"></i> Call Now</a>
         </div>
-        <span class="logo-text-main">Sohail</span><span class="logo-text-gradient">Studio</span>
-      </a>
 
-      <!-- Navigation Links -->
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Demos & Work</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <!-- Navigation Right Side (Phone + Hire Button) -->
-      <div class="nav-right">
-        <a href="tel:+918955377472" class="nav-phone">
-          <i class="fas fa-phone-alt"></i>
-          <span>+91 8955377472</span>
-        </a>
-        <a href="https://wa.me/918955377472" target="_blank" class="hire-btn">
-          Hire Me <i class="fas fa-arrow-up-right-from-square"></i>
-        </a>
+        <button class="mobile-btn"><i class="fa-solid fa-bars"></i></button>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div class="container">
-    
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-badge"><i class="fas fa-bolt"></i> Modern Web Design Studio</div>
-      <h1>High Converting Websites <br><span>That Grow Your Business</span></h1>
-      <p>We build ultra-fast, mobile-responsive, and high-quality custom websites for business owners and consultants.</p>
-      
-      <div class="hero-btns">
-        <a href="#pricing" class="btn-main">View Plans</a>
-        <a href="#portfolio" class="btn-outline">Our Work</a>
-      </div>
-
-      <!-- Quick Stats Strip -->
-      <div class="hero-stats">
-        <div class="stat-box">
-          <h4>13+ Live</h4>
-          <p>Demo Portfolios</p>
+    <section id="home" class="hero">
+      <div class="hero-glass-card" id="heroCard">
+        <div class="hero-badge">
+          <i class="fa-solid fa-cube"></i> Next-Gen 3D Photography & Video
         </div>
-        <div class="stat-box">
-          <h4>100%</h4>
-          <p>Mobile Responsive</p>
-        </div>
-        <div class="stat-box">
-          <h4>&lt; 1s</h4>
-          <p>Fast Load Speed</p>
+        <h1>Capturing Memories In <span>3D & Cinematic</span> Quality</h1>
+        <p>Sohail Studio brings your special moments to life with state-of-the-art cinematography, 4K photography, drone shoots, and high-tech 3D visual processing.</p>
+        
+        <div class="hero-btns">
+          <a href="https://wa.me/919876543210?text=Hello%20Sohail%20Studio,%20I%20want%20to%20book%20a%20shoot." target="_blank" class="btn-wa-hero">
+            <i class="fa-brands fa-whatsapp"></i> Book On WhatsApp
+          </a>
+          <a href="#portfolio" class="btn-secondary-hero">
+            <i class="fa-solid fa-play"></i> View Work
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <div class="section-title" id="services">
-      <h2>Our Services</h2>
-      <p>What we do best to level up your brand online</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <i class="fas fa-laptop-code"></i>
-        <h3>Custom Web Design</h3>
-        <p>Tailor-made sleek layouts built from scratch to match your exact business vision.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-mobile-screen-button"></i>
-        <h3>100% Mobile Responsive</h3>
-        <p>Flawless experience on iPhones, Androids, tablets, and desktop displays.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-bolt"></i>
-        <h3>Lightning Fast Speed</h3>
-        <p>Optimized code ensuring zero lag and under 1-second loading speeds.</p>
-      </div>
-    </div>
-
-    <!-- Portfolio Section with All 13 Live Demo Links -->
-    <div class="section-title" id="portfolio">
-      <h2>Our Live Portfolios & Demos</h2>
-      <p>Explore our complete suite of live client projects and industry-specific websites</p>
-    </div>
-    
-    <div class="portfolio-grid">
-      
-      <!-- 1. Iqra Associates -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" alt="Iqra Associates">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">GST & Accounting</span>
-          <h3>Iqra Associates</h3>
-          <p>Tax consulting & GST filing business portal with interactive services and WhatsApp integration.</p>
-          <a href="https://iqra-associates.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
+    <!-- 3D Services Cards Section -->
+    <section id="services" class="services-section">
+      <div class="section-header">
+        <h2>Our Premium Services</h2>
+        <p>Hover on the cards to feel the interactive 3D perspective effect</p>
       </div>
 
-      <!-- 2. Bright Future School -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800&auto=format&fit=crop" alt="Bright Future School">
+      <div class="card-grid">
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-video"></i></div>
+          <h3>Cinematic Wedding Shoots</h3>
+          <p>Full 4K high-definition wedding films, pre-wedding romantic teaser, and story-driven cinematography.</p>
         </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Education & School</span>
-          <h3>Bright Future School</h3>
-          <p>Educational institution website with admissions info, facility tours, and student portals.</p>
-          <a href="https://bright-future-school-tau.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
+
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-camera"></i></div>
+          <h3>Portrait & Studio Photography</h3>
+          <p>Professional lighting setup for high-resolution model portfolios, family portraits, and headshots.</p>
+        </div>
+
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-helicopter"></i></div>
+          <h3>4K Aerial Drone Coverage</h3>
+          <p>Breathtaking bird's-eye view shots for outdoor events, grand weddings, and commercial properties.</p>
+        </div>
+
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3>3D VFX & Video Editing</h3>
+          <p>Advanced color grading, sound mixing, 3D title animations, and special visual effects editing.</p>
+        </div>
+
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-store"></i></div>
+          <h3>Commercial & Ads</h3>
+          <p>High-converting social media reels, product photography, and brand advertisement videos.</p>
+        </div>
+
+        <div class="tilt-card">
+          <div class="card-glow"></div>
+          <div class="card-icon-3d"><i class="fa-solid fa-compact-disc"></i></div>
+          <h3>Album Design & Printing</h3>
+          <p>Premium glass-finish customized photobooks, acrylic albums, and digital 3D flip-books.</p>
         </div>
       </div>
+    </section>
 
-      <!-- 3. Glow Lux Salon & Spa -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop" alt="Glow Lux Salon">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Beauty & Wellness</span>
-          <h3>Glow Lux Salon & Spa</h3>
-          <p>Luxury beauty salon & spa portal featuring treatment menus and online booking slots.</p>
-          <a href="https://glow-lux-salon-spa.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
+    <!-- Portfolio Showcase -->
+    <section id="portfolio" class="portfolio-section">
+      <div class="section-header">
+        <h2>Featured Portfolio</h2>
+        <p>Explore some of our recent visual masterpieces</p>
       </div>
 
-      <!-- 4. Sharma Associates -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=800&auto=format&fit=crop" alt="Sharma Associates">
+      <div class="portfolio-grid">
+        <div class="portfolio-card" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80');">
+          <div class="portfolio-overlay">
+            <h4>Royal Wedding Story</h4>
+            <p>Cinematography & Album</p>
+          </div>
         </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Legal & Consultancy</span>
-          <h3>Sharma Associates</h3>
-          <p>Professional legal & corporate consulting portal showcasing expert advisory services.</p>
-          <a href="https://sharma-associates-consultant.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
+
+        <div class="portfolio-card" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80');">
+          <div class="portfolio-overlay">
+            <h4>Pre-Wedding Teaser</h4>
+            <p>4K Outdoor Drone Shoot</p>
+          </div>
+        </div>
+
+        <div class="portfolio-card" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80');">
+          <div class="portfolio-overlay">
+            <h4>Fashion & Model Shoot</h4>
+            <p>Studio Portrait</p>
+          </div>
+        </div>
+
+        <div class="portfolio-card" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=600&q=80');">
+          <div class="portfolio-overlay">
+            <h4>Commercial Ad Shoot</h4>
+            <p>Brand Story</p>
+          </div>
         </div>
       </div>
-
-      <!-- 5. Elite Gym -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Elite Gym">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Fitness & Gym</span>
-          <h3>Elite Fitness Gym</h3>
-          <p>Dynamic fitness studio website with membership plans, trainer profiles, and workout charts.</p>
-          <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 6. Alveera Enterprises -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" alt="Alveera Enterprises">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Corporate & Business</span>
-          <h3>Alveera Enterprises</h3>
-          <p>Modern enterprise website built for corporate branding, B2B services, and lead generation.</p>
-          <a href="https://alveeraenterprises.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 7. Royal Palace -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800&auto=format&fit=crop" alt="Royal Palace">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Banquet & Weddings</span>
-          <h3>Royal Palace Resort</h3>
-          <p>Grand venue & event hall booking website featuring banquet tours and package details.</p>
-          <a href="https://royal-palace-xi.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 8. Fresh Mart Medical -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=800&auto=format&fit=crop" alt="Fresh Mart Medical">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Pharmacy & Medical</span>
-          <h3>Fresh Mart Medical</h3>
-          <p>Healthcare & pharmacy order page with direct WhatsApp medicine orders and product lists.</p>
-          <a href="https://fresh-mart-medical.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 9. Smile Care Dental -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop" alt="Smile Care Dental">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Healthcare & Dental</span>
-          <h3>Smile Care Dental Clinic</h3>
-          <p>Doctor appointment booking portal with service list, clinic photos, and timings.</p>
-          <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 10. Prestige Real Estate -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop" alt="Prestige Real Estate">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Real Estate</span>
-          <h3>Prestige Real Estate</h3>
-          <p>High-converting property listing portal with site visit booking and property filters.</p>
-          <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 11. Transport Agency -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop" alt="Transport Agency">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Logistics & Transport</span>
-          <h3>Sooty Transport Agency</h3>
-          <p>Logistics & freight management website with service routes and instant fare quotes.</p>
-          <a href="https://transport-agency-sooty.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 12. Sky Wings Travel -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=800&auto=format&fit=crop" alt="Sky Wings Travel">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Travel & Tours</span>
-          <h3>Sky Wings Travel Agency</h3>
-          <p>Tour packages showcase portal with booking inquiry forms and holiday destination packages.</p>
-          <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- 13. Royal Ranthambore -->
-      <div class="portfolio-card">
-        <div class="portfolio-img-box">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop" alt="Royal Ranthambore">
-        </div>
-        <div class="portfolio-content">
-          <span class="portfolio-tag">Hotel & Safari</span>
-          <h3>Royal Ranthambore Resort</h3>
-          <p>Luxury resort & hotel booking landing page with room tours, safari bookings, and gallery.</p>
-          <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="portfolio-link">
-            View Live Site <i class="fas fa-external-link-alt"></i>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Pricing Section -->
-    <div class="section-title" id="pricing">
-      <h2>Simple Transparent Pricing</h2>
-      <p>Choose the best plan for your business growth</p>
-    </div>
-    <div class="pricing-grid">
-      
-      <div class="price-card">
-        <div class="card-title">Starter Page</div>
-        <div class="price-amount"><span class="currency">₹</span>2,999</div>
-        <ul class="features-list">
-          <li><i class="fas fa-check-circle"></i> Single Page Fast Site</li>
-          <li><i class="fas fa-check-circle"></i> 100% Mobile Responsive</li>
-          <li><i class="fas fa-check-circle"></i> Direct WhatsApp Button</li>
-        </ul>
-        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Starter%20Page" target="_blank" class="order-btn">Order Plan</a>
-      </div>
-
-      <div class="price-card featured">
-        <div class="card-title" style="color: #c084fc;">Business Pro</div>
-        <div class="price-amount"><span class="currency">₹</span>4,999</div>
-        <ul class="features-list">
-          <li><i class="fas fa-check-circle"></i> Up to 5 Custom Pages</li>
-          <li><i class="fas fa-check-circle"></i> Ultra Fast Load Speed</li>
-          <li><i class="fas fa-check-circle"></i> Free Domain Setup</li>
-        </ul>
-        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Business%20Pro" target="_blank" class="order-btn" style="background: var(--gradient-fire);">Order Plan</a>
-      </div>
-
-      <div class="price-card">
-        <div class="card-title">Custom Portal</div>
-        <div class="price-amount"><span class="currency">₹</span>8,999+</div>
-        <ul class="features-list">
-          <li><i class="fas fa-check-circle"></i> Multi-page Advanced Portal</li>
-          <li><i class="fas fa-check-circle"></i> Custom Features & Design</li>
-          <li><i class="fas fa-check-circle"></i> Priority 24/7 Support</li>
-        </ul>
-        <a href="https://wa.me/918955377472?text=I%20want%20to%20order%20Custom%20Portal" target="_blank" class="order-btn">Order Plan</a>
-      </div>
-
-    </div>
+    </section>
 
     <!-- Contact Section -->
-    <div class="section-title" id="contact">
-      <h2>Get In Touch</h2>
-      <p>Let's build something amazing for your business</p>
-    </div>
-    <div class="contact-card">
-      <h3>Ready to Launch Your Website?</h3>
-      <p>Connect with us on WhatsApp or call directly to discuss your project requirements.</p>
-      <div class="contact-actions">
-        <a href="https://wa.me/918955377472" target="_blank" class="contact-btn contact-wa">
-          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-        </a>
-        <a href="tel:+918955377472" class="contact-btn contact-call">
-          <i class="fas fa-phone-alt"></i> Call +91 8955377472
-        </a>
+    <section id="contact" class="contact-section">
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Let's Create Something Amazing</h3>
+          <p>Have an upcoming event or shoot? Reach out to Sohail Studio today!</p>
+
+          <div class="contact-item">
+            <div class="contact-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <h4 style="color: #fff;">Studio Location</h4>
+              <p style="margin: 0;">Sohail Studio, Main Market Road, City Centre</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-box"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <h4 style="color: #fff;">Phone</h4>
+              <p style="margin: 0;"><a href="tel:+919876543210" style="color:#38bdf8; text-decoration:none;">+91 9876543210</a></p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon-box"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <h4 style="color: #fff;">Email</h4>
+              <p style="margin: 0;"><a href="mailto:sohailstudio@gmail.com" style="color:#38bdf8; text-decoration:none;">sohailstudio@gmail.com</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h4 style="font-size: 22px; color: #fff; margin-bottom: 20px;">Book A Consultation</h4>
+          <form onsubmit="event.preventDefault(); alert('Thank you! Sohail Studio team will contact you shortly.');">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="e.g. Sameer Khan" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="e.g. +91 9876543210" required>
+            </div>
+            <div class="form-group">
+              <label>Event Type / Date</label>
+              <textarea rows="3" placeholder="Wedding, Pre-wedding, Studio Shoot, etc."></textarea>
+            </div>
+            <button type="submit" class="btn-submit-3d">Send Booking Request</button>
+          </form>
+        </div>
       </div>
+    </section>
+
+    <!-- Floating WhatsApp & Phone Buttons -->
+    <div style="position: fixed; bottom: 25px; right: 25px; z-index: 99999; display: flex; flex-direction: column; gap: 12px;">
+      <a href="https://wa.me/919876543210?text=Hello%20Sohail%20Studio" target="_blank" style="width: 55px; height: 55px; background:#22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 26px; text-decoration: none; box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <a href="tel:+919876543210" style="width: 55px; height: 55px; background:#2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; text-decoration: none; box-shadow: 0 0 20px rgba(37, 99, 235, 0.6);">
+        <i class="fa-solid fa-phone"></i>
+      </a>
     </div>
 
+    <!-- Footer -->
+    <footer>
+      <p>© 2026 SOHAIL STUDIO. All Rights Reserved. Crafted with 3D WebGL Technology.</p>
+    </footer>
+
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 Sohail Studio. All rights reserved.</p>
-  </footer>
+  <!-- Three.js 3D Interactive Canvas Script -->
+  <script>
+    // Initialize Three.js Scene, Camera, Renderer
+    const canvas = document.getElementById('webgl-bg');
+    const scene = new THREE.Scene();
+    
+    // Subtle fog for 3D depth
+    scene.fog = new THREE.FogExp2(0x050811, 0.002);
 
-  <!-- Floating Call & WhatsApp Action Buttons -->
-  <div class="fixed-actions">
-    <a href="tel:+918955377472" class="float-btn float-phone"><i class="fas fa-phone"></i></a>
-    <a href="https://wa.me/918955377472" target="_blank" class="float-btn float-wa"><i class="fab fa-whatsapp"></i></a>
-  </div>
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
 
+    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    // Create 3D Floating Geometry (Spheres, Toruses, Icosahedrons)
+    const objectsGroup = new THREE.Group();
+
+    // 1. Central Camera Lens Ring (Torus)
+    const ringGeo = new THREE.TorusGeometry(12, 0.8, 16, 100);
+    const ringMat = new THREE.MeshStandardMaterial({
+      color: 0x06b6d4,
+      metalness: 0.8,
+      roughness: 0.2,
+      wireframe: true
+    });
+    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+    objectsGroup.add(ringMesh);
+
+    // 2. Inner Floating Core
+    const coreGeo = new THREE.IcosahedronGeometry(6, 2);
+    const coreMat = new THREE.MeshStandardMaterial({
+      color: 0x3b82f6,
+      wireframe: true
+    });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    objectsGroup.add(coreMesh);
+
+    // 3. Floating 3D Particles / Floating Cubes
+    const particlesCount = 120;
+    const particlesGeo = new THREE.BufferGeometry();
+    const posArray = new Float32Array(particlesCount * 3);
+
+    for(let i=0; i < particlesCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 100;
+    }
+
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    const particlesMat = new THREE.PointsMaterial({
+      size: 0.35,
+      color: 0x38bdf8,
+      transparent: true,
+      opacity: 0.8
+    });
+    const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particlesMesh);
+
+    scene.add(objectsGroup);
+
+    // Dynamic 3D Lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+
+    const pointLight1 = new THREE.PointLight(0x06b6d4, 2, 100);
+    pointLight1.position.set(20, 20, 20);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0x818cf8, 2, 100);
+    pointLight2.position.set(-20, -20, 20);
+    scene.add(pointLight2);
+
+    // Mouse Parallax Interaction
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX - window.innerWidth / 2) / 100;
+      mouseY = (e.clientY - window.innerHeight / 2) / 100;
+    });
+
+    // Animation Loop
+    const clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const elapsedTime = clock.getElapsedTime();
+
+      // Rotate 3D Objects
+      ringMesh.rotation.x = elapsedTime * 0.3;
+      ringMesh.rotation.y = elapsedTime * 0.4;
+
+      coreMesh.rotation.x = -elapsedTime * 0.2;
+      coreMesh.rotation.y = -elapsedTime * 0.3;
+
+      particlesMesh.rotation.y = elapsedTime * 0.05;
+
+      // Smooth Mouse Parallax
+      targetX = mouseX * 0.5;
+      targetY = mouseY * 0.5;
+
+      objectsGroup.rotation.y += 0.05 * (targetX - objectsGroup.rotation.y);
+      objectsGroup.rotation.x += 0.05 * (targetY - objectsGroup.rotation.x);
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Responsive Window Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // 3D Tilt Card Hover Effect (Vanilla JS)
+    const cards = document.querySelectorAll('.tilt-card, .hero-glass-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) translateZ(10px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+      });
+    });
+  </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sohail Studio | 3D Interactive Portfolio & Demo Websites</title>
+  <title>Sohail Studio | Interactive 3D Portfolio & Showcase</title>
   <style>
     /* Global Reset */
     * {
@@ -14,7 +14,7 @@
     }
 
     body {
-      background-color: #0b0c10;
+      background-color: #06080c;
       color: #ffffff;
       overflow-x: hidden;
     }
@@ -30,26 +30,49 @@
       pointer-events: none;
     }
 
-    /* Header & Navigation */
+    /* Header & Logo */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 8%;
-      background: rgba(11, 12, 16, 0.85);
-      backdrop-filter: blur(12px);
+      padding: 15px 8%;
+      background: rgba(10, 15, 25, 0.85);
+      backdrop-filter: blur(15px);
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(102, 252, 241, 0.1);
+      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
     }
 
-    .logo {
-      font-size: 1.8rem;
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #66fcf1, #45a29e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: #0b0c10;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.6);
+      border: 2px solid #ffffff;
+    }
+
+    .logo-text {
+      font-size: 1.6rem;
       font-weight: 800;
       letter-spacing: 2px;
-      color: #66fcf1;
+      background: linear-gradient(45deg, #ffffff, #66fcf1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-transform: uppercase;
     }
 
@@ -65,20 +88,20 @@
 
     /* Hero Section */
     .hero {
-      height: 60vh;
+      height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 0 20px;
-      margin-top: 60px;
+      margin-top: 70px;
     }
 
     .hero h1 {
-      font-size: 3.8rem;
+      font-size: 3.5rem;
       margin-bottom: 15px;
-      background: linear-gradient(45deg, #ffffff, #66fcf1);
+      background: linear-gradient(45deg, #ffffff, #66fcf1, #ff007f);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -86,47 +109,72 @@
     .hero p {
       font-size: 1.2rem;
       color: #c5c6c7;
-      max-width: 600px;
+      max-width: 650px;
       margin-bottom: 25px;
     }
 
-    section { padding: 50px 8%; text-align: center; }
-    .section-title { font-size: 2.2rem; margin-bottom: 40px; color: #66fcf1; }
+    section { padding: 40px 8%; text-align: center; }
+    .section-title { 
+      font-size: 2.4rem; 
+      margin-bottom: 40px; 
+      color: #66fcf1;
+      text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+    }
 
     /* 3D Demos Grid */
     .demo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
       perspective: 1000px;
     }
 
     .demo-card {
-      background: rgba(31, 40, 51, 0.7);
-      border: 1px solid rgba(102, 252, 241, 0.2);
-      padding: 25px;
-      border-radius: 15px;
-      backdrop-filter: blur(8px);
+      background: rgba(20, 28, 40, 0.75);
+      border: 1px solid rgba(102, 252, 241, 0.25);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
       transform-style: preserve-3d;
-      transition: transform 0.1s ease, border-color 0.3s ease;
+      transition: all 0.3s ease;
       text-align: left;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .demo-card:hover { 
+      border-color: #66fcf1;
+      box-shadow: 0 0 25px rgba(102, 252, 241, 0.4);
+    }
+
+    /* Card Banner Header Image */
+    .card-banner {
+      width: 100%;
+      height: 160px;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(102, 252, 241, 0.2);
+    }
+
+    .card-content {
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      flex-grow: 1;
     }
 
-    .demo-card:hover { border-color: #66fcf1; }
-
-    .demo-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.2rem; }
-    .demo-card p { color: #c5c6c7; font-size: 0.85rem; margin-bottom: 20px; }
+    .demo-card h3 { color: #fff; margin-bottom: 8px; font-size: 1.25rem; }
+    .demo-card p { color: #a0a5b5; font-size: 0.88rem; margin-bottom: 20px; line-height: 1.4; }
 
     .demo-link {
       display: block;
       padding: 10px 18px;
-      background: #45a29e;
+      background: linear-gradient(45deg, #45a29e, #66fcf1);
       color: #0b0c10;
       font-weight: bold;
-      border-radius: 20px;
+      border-radius: 25px;
       text-decoration: none;
       font-size: 0.9rem;
       transition: all 0.3s ease;
@@ -134,25 +182,25 @@
     }
 
     .demo-link:hover {
-      background: #66fcf1;
-      box-shadow: 0 0 15px rgba(102, 252, 241, 0.8);
+      box-shadow: 0 0 20px rgba(102, 252, 241, 0.9);
       transform: translateY(-2px);
     }
 
-    /* Contact Details Section */
+    /* Contact Details Box */
     .contact-box {
       max-width: 600px;
       margin: 0 auto;
       padding: 40px;
-      background: rgba(31, 40, 51, 0.6);
+      background: rgba(20, 28, 40, 0.8);
       border-radius: 20px;
       border: 1px solid rgba(102, 252, 241, 0.3);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
     }
 
     .contact-info p { margin: 15px 0; color: #c5c6c7; font-size: 1.1rem; }
     .contact-info a { color: #66fcf1; text-decoration: none; font-weight: bold; }
 
-    /* FLOATING QUICK CONTACT BUTTONS */
+    /* FLOATING CONTACT BUTTONS WITH PULSE */
     .floating-buttons {
       position: fixed;
       bottom: 30px;
@@ -164,8 +212,8 @@
     }
 
     .float-btn {
-      width: 55px;
-      height: 55px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
@@ -177,15 +225,23 @@
       cursor: pointer;
     }
 
-    .float-btn svg { width: 26px; height: 26px; fill: white; }
+    .float-btn svg { width: 28px; height: 28px; fill: white; }
     .float-btn:hover { transform: scale(1.15) translateY(-3px); }
-    .call-btn { background: #45a29e; }
-    .wa-btn { background: #25d366; }
+    
+    .call-btn { 
+      background: #45a29e; 
+      box-shadow: 0 0 15px rgba(69, 162, 158, 0.6);
+    }
+    
+    .wa-btn { 
+      background: #25d366; 
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    }
 
     footer { text-align: center; padding: 25px; color: #666; font-size: 0.9rem; }
 
     @media(max-width: 768px) {
-      .hero h1 { font-size: 2.5rem; }
+      .hero h1 { font-size: 2.3rem; }
       header { padding: 15px 5%; }
       .floating-buttons { bottom: 20px; right: 20px; }
     }
@@ -200,7 +256,10 @@
 
   <!-- Navigation Bar -->
   <header>
-    <div class="logo">Sohail Studio</div>
+    <div class="brand-container">
+      <div class="brand-logo">S</div>
+      <div class="logo-text">Sohail Studio</div>
+    </div>
     <nav>
       <a href="#home">Home</a>
       <a href="#demos">Demo Sites</a>
@@ -214,132 +273,145 @@
     <p>3D Interactive Portfolio & Client Projects Showcase</p>
   </section>
 
-  <!-- 13 REAL DEMO WEBSITES SHOWCASE -->
+  <!-- 13 DEMO WEBSITES SHOWCASE WITH DYNAMIC BANNERS -->
   <section id="demos">
-    <h2 class="section-title">Our Live Demo Projects (13 Websites)</h2>
+    <h2 class="section-title">Explore Live Demos (13 Websites)</h2>
     <div class="demo-grid">
       
       <!-- Demo 1 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Iqra Associates</h3>
-          <p>Professional Consultancy & Legal Services Website.</p>
+          <p>Professional Consultancy & Legal Advisory Services Platform.</p>
+          <a href="https://iqra-associates.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://iqra-associates.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 2 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Bright Future School</h3>
-          <p>Educational Institute & Academy Portal.</p>
+          <p>Modern Educational Portal & Academic Management Website.</p>
+          <a href="https://bright-future-school-tau.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://bright-future-school-tau.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 3 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Glow Lux Salon & Spa</h3>
-          <p>Beauty, Spa & Luxury Salon Landing Page.</p>
+          <p>Luxury Beauty Parlour, Spa & Wellness Booking Experience.</p>
+          <a href="https://glow-lux-salon-spa.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://glow-lux-salon-spa.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 4 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Sharma Associates</h3>
-          <p>Corporate Business & Financial Consultants.</p>
+          <p>Financial Planning & Corporate Business Consulting Agency.</p>
+          <a href="https://sharma-associates-consultant.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://sharma-associates-consultant.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 5 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Elite Gym</h3>
-          <p>Fitness, Workout & Gym Membership Site.</p>
+          <p>Fitness Club, Bodybuilding & Trainer Booking Template.</p>
+          <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://elite-gym-lemon.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 6 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Alveera Enterprises</h3>
-          <p>Enterprise Services & Business Portfolio.</p>
+          <p>Commercial Services, Trading & Corporate Portfolio Hub.</p>
+          <a href="https://alveeraenterprises.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://alveeraenterprises.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 7 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Royal Palace</h3>
-          <p>Hotel, Resort & Luxury Banquet Hall Web Layout.</p>
+          <p>Grand Banquet, Heritage Hotel & Wedding Resort Booking.</p>
+          <a href="https://royal-palace-xi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://royal-palace-xi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 8 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Fresh Mart Medical</h3>
-          <p>Pharmacy & Healthcare Store Front-end.</p>
+          <p>Online Pharmacy, Healthcare Products & Medicine Portal.</p>
+          <a href="https://fresh-mart-medical.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://fresh-mart-medical.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 9 -->
       <div class="demo-card" data-tilt>
-        <div>
-          <h3>Smile Care Dental Clinic</h3>
-          <p>Doctor Booking & Healthcare Dental Site.</p>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
+          <h3>Smile Care Dental</h3>
+          <p>Dental Clinic, Doctor Consultation & Appointment Booking.</p>
+          <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://smile-care-dental-clinic-iota.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 10 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Prestige Real Estate</h3>
-          <p>Property & Real Estate Agency Portal.</p>
+          <p>Property Deals, Villa Sales & Commercial Real Estate Agency.</p>
+          <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://prestige-real-estate-phi.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 11 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Transport Agency</h3>
-          <p>Logistics, Shipping & Cargo Management Site.</p>
+          <p>Logistics Fleet, Cargo Shipment & Goods Transport Service.</p>
+          <a href="https://transport-agency-sooty.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://transport-agency-sooty.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 12 -->
       <div class="demo-card" data-tilt>
-        <div>
-          <h3>Sky Wings Travel Agency</h3>
-          <p>Tour Packages & Travel Booking Web Layout.</p>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
+          <h3>Sky Wings Travel</h3>
+          <p>International Travel Agency, Flight Booking & Tour Packages.</p>
+          <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://sky-wings-travel-agency.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
       <!-- Demo 13 -->
       <div class="demo-card" data-tilt>
-        <div>
+        <div class="card-banner" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="card-content">
           <h3>Royal Ranthambore</h3>
-          <p>Resort Booking & Safari Tours Experience.</p>
+          <p>Wildlife Safari Booking, Resort Stay & National Park Tours.</p>
+          <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
         </div>
-        <a href="https://royal-ranthambore.vercel.app/" target="_blank" class="demo-link">Open Website 🔗</a>
       </div>
 
     </div>
   </section>
 
-  <!-- Contact Details -->
+  <!-- Contact Section -->
   <section id="contact">
     <div class="contact-box">
       <h2 style="color: #66fcf1; margin-bottom: 15px;">Contact Sohail Studio</h2>
@@ -350,7 +422,7 @@
     </div>
   </section>
 
-  <!-- Floating Call & WhatsApp Buttons -->
+  <!-- Dynamic Floating Buttons -->
   <div class="floating-buttons">
     <a href="tel:8955377472" class="float-btn call-btn" title="Call Us">
       <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -364,7 +436,7 @@
     &copy; 2026 Sohail Studio. All Rights Reserved.
   </footer>
 
-  <!-- Three.js 3D Background Engine -->
+  <!-- Three.js Interactive Particle Background Logic -->
   <script>
     const canvas = document.getElementById('bg-canvas');
     const scene = new THREE.Scene();
@@ -377,12 +449,12 @@
     renderer.setPixelRatio(window.devicePixelRatio);
 
     const geometry = new THREE.IcosahedronGeometry(12, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x66fcf1, wireframe: true, transparent: true, opacity: 0.2 });
+    const material = new THREE.MeshBasicMaterial({ color: 0x66fcf1, wireframe: true, transparent: true, opacity: 0.15 });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 800;
+    const particlesCount = 900;
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) { posArray[i] = (Math.random() - 0.5) * 120; }
@@ -402,11 +474,11 @@
     function animate() {
       requestAnimationFrame(animate);
       sphere.rotation.x += 0.002;
-      sphere.rotation.y += 0.004;
-      particlesMesh.rotation.y = -mouseX * 0.4;
-      particlesMesh.rotation.x = -mouseY * 0.4;
-      sphere.position.x = mouseX * 4;
-      sphere.position.y = -mouseY * 4;
+      sphere.rotation.y += 0.003;
+      particlesMesh.rotation.y = -mouseX * 0.3;
+      particlesMesh.rotation.x = -mouseY * 0.3;
+      sphere.position.x = mouseX * 3;
+      sphere.position.y = -mouseY * 3;
       renderer.render(scene, camera);
     }
     animate();
@@ -417,14 +489,14 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // 3D Tilt Motion for Grid Cards
+    // Dynamic Card Tilt Effect
     const cards = document.querySelectorAll('[data-tilt]');
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        card.style.transform = `perspective(1000px) rotateX(${(y / (rect.height / 2)) * -10}deg) rotateY(${(x / (rect.width / 2)) * 10}deg) translateZ(10px)`;
+        card.style.transform = `perspective(1000px) rotateX(${(y / (rect.height / 2)) * -8}deg) rotateY(${(x / (rect.width / 2)) * 8}deg) translateZ(8px)`;
       });
       card.addEventListener('mouseleave', () => {
         card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';

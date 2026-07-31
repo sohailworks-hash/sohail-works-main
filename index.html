@@ -189,9 +189,81 @@
   .float-wa{ background:var(--whatsapp); }
   .float-wa svg{ fill:#fff; }
   .float-wa:hover{ transform:translateY(-6px) scale(1.08); }
+
+  /* ===== Premium Page Loader ===== */
+  #pageLoader{
+    position:fixed; inset:0; z-index:9999; background:var(--bg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px;
+    transition:opacity 0.7s ease, visibility 0.7s ease;
+  }
+  #pageLoader.hidden{ opacity:0; visibility:hidden; pointer-events:none; }
+  .loader-mark{ width:76px; height:76px; }
+  .loader-mark svg{ width:100%; height:100%; }
+  .loader-path{
+    stroke-dasharray:220; stroke-dashoffset:220;
+    animation:draw 1.4s ease-in-out infinite alternate;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .loader-word{ font-family:'Playfair Display', serif; font-size:0.95rem; letter-spacing:0.32em; text-transform:uppercase;
+    color:var(--gold-light); opacity:0.9; }
+  .loader-bar{ width:160px; height:1px; background:rgba(201,162,39,0.18); position:relative; overflow:hidden; }
+  .loader-bar::after{
+    content:''; position:absolute; top:0; left:-40%; width:40%; height:100%;
+    background:linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    animation:sweep 1.3s ease-in-out infinite;
+  }
+  @keyframes sweep{ 0%{ left:-40%; } 100%{ left:100%; } }
+  @media (prefers-reduced-motion: reduce){
+    .loader-path{ animation:none; stroke-dashoffset:0; }
+    .loader-bar::after{ animation:none; display:none; }
+  }
+
+  /* ===== Entrance Reveal (pixel grid) ===== */
+  #pixelReveal{
+    position:fixed; inset:0; z-index:9998;
+    display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:repeat(7,1fr);
+    pointer-events:none;
+  }
+  #pixelReveal .px{ background:var(--bg); border:1px solid rgba(201,162,39,0.06); transform:scale(1); opacity:1;
+    transition:transform 0.55s cubic-bezier(.6,0,.2,1), opacity 0.55s ease; }
+  #pixelReveal .px.gone{ transform:scale(0); opacity:0; }
+  @media (prefers-reduced-motion: reduce){
+    #pixelReveal{ display:none; }
+  }
+
+  /* ===== Portfolio card hover: layered fan effect ===== */
+  .p-banner .icon-scene{ transition:transform 0.45s cubic-bezier(.34,1.56,.64,1); }
+  .p-card:hover .icon-scene{ transform:scale(1.12) rotate(-4deg); }
+  .p-banner{ position:relative; }
+  .p-banner .fan-layer{ position:absolute; width:70px; height:70px; border:1px solid rgba(201,162,39,0.35); border-radius:6px;
+    opacity:0; transition:all 0.45s cubic-bezier(.34,1.56,.64,1); pointer-events:none; }
+  .p-card:hover .fan-layer.f1{ opacity:0.55; transform:translate(-50%,-50%) rotate(-12deg) translateX(-14px); }
+  .p-card:hover .fan-layer.f2{ opacity:0.35; transform:translate(-50%,-50%) rotate(12deg) translateX(14px); }
+  .fan-layer{ top:50%; left:50%; transform:translate(-50%,-50%) rotate(0deg); }
 </style>
 </head>
 <body>
+
+<div id="pageLoader">
+  <div class="loader-mark">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="loaderGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+          <stop offset="0%" stop-color="#7a5f18"/>
+          <stop offset="50%" stop-color="#c9a227"/>
+          <stop offset="100%" stop-color="#f0d78c"/>
+        </linearGradient>
+      </defs>
+      <path class="loader-path" d="M66 18 C50 12 34 20 34 32 C34 42 44 46 54 49 C64 52 72 56 72 66 C72 78 56 86 40 80 C34 78 29 74 26 68"
+            fill="none" stroke="url(#loaderGrad)" stroke-width="11" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <div class="loader-word">Sohail Studio</div>
+  <div class="loader-bar"></div>
+</div>
+
+<div id="pixelReveal" aria-hidden="true"></div>
+
 
 <div class="bg-fx" aria-hidden="true">
   <div class="glow glow-1"></div>
@@ -620,6 +692,46 @@
 </div>
 
 <script>
+  // Build pixel-grid entrance reveal
+  var pxContainer = document.getElementById('pixelReveal');
+  var pxTotal = 12 * 7;
+  var pxCells = [];
+  for (var p = 0; p < pxTotal; p++) {
+    var cell = document.createElement('div');
+    cell.className = 'px';
+    pxContainer.appendChild(cell);
+    pxCells.push(cell);
+  }
+
+  // Add layered fan hover elements to every portfolio banner
+  document.querySelectorAll('.p-banner').forEach(function (banner) {
+    var f1 = document.createElement('div');
+    f1.className = 'fan-layer f1';
+    var f2 = document.createElement('div');
+    f2.className = 'fan-layer f2';
+    banner.appendChild(f1);
+    banner.appendChild(f2);
+  });
+
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var loader = document.getElementById('pageLoader');
+      if (loader) loader.classList.add('hidden');
+
+      // staggered pixel reveal, randomized order
+      var order = pxCells.map(function (c, i) { return i; });
+      order.sort(function () { return Math.random() - 0.5; });
+      order.forEach(function (idx, seq) {
+        setTimeout(function () {
+          pxCells[idx].classList.add('gone');
+        }, seq * 9);
+      });
+      setTimeout(function () {
+        if (pxContainer) pxContainer.remove();
+      }, order.length * 9 + 700);
+    }, 400);
+  });
+
   var dustContainer = document.getElementById('dustField');
   for (var i = 0; i < 24; i++) {
     var s = document.createElement('div');
